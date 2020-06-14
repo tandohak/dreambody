@@ -13,8 +13,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 /* H2 연동 테스트를 위한 엔티티
- * developer : 이병덕
- * 잘 돌아가면 파일 제거 해주세요
+ * auth : 이병덕
+ * createDate : 2020.06.15
  * */
 
 @RunWith(SpringRunner.class)
