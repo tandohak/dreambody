@@ -32,6 +32,7 @@ dependencies {
     }
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'junit:junit:4.12'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 
 test {
