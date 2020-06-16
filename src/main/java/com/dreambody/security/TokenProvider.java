@@ -27,6 +27,8 @@ public class TokenProvider {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
 
+        // TODO : JWT 암호화.
+        // SUB -> 인덱스 넣는 부분 변경.
         return Jwts.builder()
                 .setSubject(Long.toString(userPrincipal.getId()))
                 .setIssuedAt(new Date())
@@ -40,7 +42,7 @@ public class TokenProvider {
                 .setSigningKey(appProperties.getAuth().getTokenSecret())
                 .parseClaimsJws(token)
                 .getBody();
-
+        // TODO : SUB 에서 받아오는 부분 변경.
         return Long.parseLong(claims.getSubject());
     }
 
