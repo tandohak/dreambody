@@ -9,11 +9,11 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-/*
-*   @auth : 이병덕
+/**
+*   @author  : 이병덕
 *   @description : 해당 클래스를 상속 받으면 생성일, 수정일 컬럼을 자동으로 생성하고, 값도 자동으로 update 해준다.
-*   @date : 2020.06.15
-* */
+*   @date: 2020.06.15
+*/
 
 @Getter
 @MappedSuperclass // JPA Entity 클래스들이 BaseTimeEntity를 상속할 경우 필드들(createDate,modifiedDate)도 컬럼으로 인식하도록 함)

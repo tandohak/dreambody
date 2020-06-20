@@ -14,8 +14,8 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-/*
- *   @auth : 이병덕
+/**
+ *   @author : 이병덕
  *   @description : BaseTimeEntity 테스트 코드
  *   @date : 2020.06.15
  */

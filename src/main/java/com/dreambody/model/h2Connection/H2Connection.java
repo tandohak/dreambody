@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/*
- *   @auth : 이병덕
+/**
+ *   @author  : 이병덕
  *   @description : H2 연동 테스트를 위한 엔티티
  *   @date : 2020.06.15
  */
