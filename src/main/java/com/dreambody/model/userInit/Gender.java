@@ -27,6 +27,8 @@ public class Gender extends BaseTimeEntity {
     @Column(nullable = false, length = 1)
     private String gender;
 
+
+
     @Builder
     public Gender (String gender) {
         this.gender = gender;

@@ -1,7 +1,9 @@
 package com.dreambody.controller.userInit;
 
 
+import com.dreambody.controller.userInit.dto.ActivityResponseDto;
 import com.dreambody.controller.userInit.dto.GoalResponseDto;
+import com.dreambody.service.userInit.ActivityService;
 import com.dreambody.service.userInit.GoalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,19 +13,19 @@ import java.util.List;
 
 /**
  * @author : 이병덕
- * @decription : 목표조회 컨트롤러
+ * @decription : 활동성 조회 컨트롤러
  * @date : 2020.06.21
  */
 
 @RequiredArgsConstructor
 @RestController
-public class GoalController {
+public class ActivityController {
 
-    private final GoalService goalService;
+    private final ActivityService activityService;
 
     // 목표 조회
-    @GetMapping("/goal")
-    public List<GoalResponseDto> findAll() {
-        return goalService.findAll();
+    @GetMapping("/activity")
+    public List<ActivityResponseDto> findAll() {
+        return activityService.findAll();
     }
 }

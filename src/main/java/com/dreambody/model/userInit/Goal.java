@@ -1,5 +1,6 @@
 package com.dreambody.model.userInit;
 
+import com.dreambody.model.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ import javax.persistence.*;
         @UniqueConstraint(columnNames = "goal")
 })
 @Entity
-public class Goal {
+public class Goal extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
