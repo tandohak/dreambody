@@ -35,7 +35,10 @@ public class UserInfo extends BaseTimeEntity {
     private int height;
 
     @Column(nullable = false)
-    private LocalDateTime dateOfBirth;
+    private String dateOfBirth;
+
+    @Column(nullable = false)
+    private int dailyIntakeCalorie;
 
     @ManyToOne
     @JoinColumn(name = "gender_id")
@@ -51,13 +54,30 @@ public class UserInfo extends BaseTimeEntity {
 
 
     @Builder
-    public UserInfo(int currentWeight, int goalWeight, int height, LocalDateTime dateOfBirth, Gender gender, Goal goal, Activity activity) {
+    public UserInfo(int currentWeight, int goalWeight, int height, String dateOfBirth, int dailyIntakeCalorie ,Gender gender, Goal goal, Activity activity) {
         this.currentWeight = currentWeight;
         this.goalWeight = goalWeight;
         this.height = height;
         this.dateOfBirth = dateOfBirth;
+        this.dailyIntakeCalorie = dailyIntakeCalorie;
         this.gender = gender;
         this.goal = goal;
         this.activity = activity;
+    }
+
+    // 일일 칼로리 계산
+    public int calculationDailyIntakeCalorie() {
+        // 2020 하드 코딩 없애야 함.
+        int age = 2020 - Integer.parseInt(dateOfBirth.substring(0,3));
+
+        if ("남".equals(gender.getGender())) {
+           dailyIntakeCalorie = (int) (66 + (13.7 * currentWeight) + (5 * height) - (6.5 * age));
+
+           return dailyIntakeCalorie;
+        }
+        // 여자
+        dailyIntakeCalorie = (int) (655 + (9.6 * currentWeight) + (1.8 * height) - (4.7 * age));
+
+        return dailyIntakeCalorie;
     }
 }

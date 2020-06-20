@@ -1,6 +1,7 @@
 package com.dreambody.service.userInit;
 
 import com.dreambody.controller.userInit.dto.UserInfoSaveRequestDto;
+import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.userInit.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class UserInfoService {
     //  회원 정보 최초 저장
     @Transactional
     public Long save(UserInfoSaveRequestDto userInfoSaveRequestDto) {
-        return userInfoRepository.save(userInfoSaveRequestDto.toEntity()).getId();
+        UserInfo userInfo = userInfoSaveRequestDto.toEntity();
+        userInfo.calculationDailyIntakeCalorie(); // 일일 칼로리 계산
+
+        return userInfoRepository.save(userInfo).getId();
     }
 }
