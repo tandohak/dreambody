@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.rmi.activation.ActivationID;
+import java.time.LocalDateTime;
 
 /**
  * @author : 이병덕
@@ -34,7 +35,7 @@ public class UserInfo extends BaseTimeEntity {
     private int height;
 
     @Column(nullable = false)
-    private int dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
     @ManyToOne
     @JoinColumn(name = "gender_id")
@@ -49,9 +50,14 @@ public class UserInfo extends BaseTimeEntity {
     private Activity activity;
 
 
-//    @Builder
-//    public UserInfo(String activity, float decimal) {
-//        this.activity = activity;
-//        this.decimal = decimal;
-//    }
+    @Builder
+    public UserInfo(int currentWeight, int goalWeight, int height, LocalDateTime dateOfBirth, Gender gender, Goal goal, Activity activity) {
+        this.currentWeight = currentWeight;
+        this.goalWeight = goalWeight;
+        this.height = height;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.goal = goal;
+        this.activity = activity;
+    }
 }
