@@ -10,10 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/* description : H2 연동 테스트를 위한 엔티티
- * auth : 이병덕
- * createDate : 2020.06.15
- * */
+/*
+ *   @auth : 이병덕
+ *   @description : H2 연동 테스트를 위한 엔티티
+ *   @date : 2020.06.15
+ */
 
 @Getter
 @NoArgsConstructor
@@ -32,3 +33,4 @@ public class H2Connection extends BaseTimeEntity {
         this.name = name;
     }
 }
+

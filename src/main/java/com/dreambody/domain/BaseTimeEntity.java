@@ -10,9 +10,9 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /*
-* description : 해당 클래스를 상속 받으면 생성일, 수정일 컬럼을 자동으로 생성하고, 값도 자동으로 update 해준다.
-* auth : 이병덕
-* createDate : 2020.06.15
+*   @auth : 이병덕
+*   @description : 해당 클래스를 상속 받으면 생성일, 수정일 컬럼을 자동으로 생성하고, 값도 자동으로 update 해준다.
+*   @date : 2020.06.15
 * */
 
 @Getter

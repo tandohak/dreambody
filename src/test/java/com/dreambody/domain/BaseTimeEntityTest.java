@@ -13,10 +13,10 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /*
-* description : BaseTimeEntity 테스트 코드
-* auth : 이병덕
-* createDate : 2020.06.15
-* */
+ *   @auth : 이병덕
+ *   @description : BaseTimeEntity 테스트 코드
+ *   @date : 2020.06.15
+ */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
