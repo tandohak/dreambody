@@ -1,5 +1,7 @@
-package com.dreambody.domain;
+package com.dreambody.model;
 
+import com.dreambody.model.h2Connection.H2Connection;
+import com.dreambody.model.h2Connection.H2ConnectionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

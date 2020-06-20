@@ -1,4 +1,4 @@
-package com.dreambody.domain;
+package com.dreambody.model.h2Connection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

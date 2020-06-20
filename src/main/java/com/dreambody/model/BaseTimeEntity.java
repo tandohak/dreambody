@@ -1,4 +1,4 @@
-package com.dreambody.domain;
+package com.dreambody.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,9 +1,7 @@
 package com.dreambody.model;
 
-import com.dreambody.domain.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;

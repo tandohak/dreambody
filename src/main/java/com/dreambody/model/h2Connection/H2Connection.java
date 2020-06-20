@@ -1,5 +1,6 @@
-package com.dreambody.domain;
+package com.dreambody.model.h2Connection;
 
+import com.dreambody.model.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
