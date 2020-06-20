@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
         @UniqueConstraint(columnNames = "email")
 })
 @Getter @Setter
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
