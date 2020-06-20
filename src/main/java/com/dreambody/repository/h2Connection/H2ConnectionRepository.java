@@ -1,5 +1,6 @@
-package com.dreambody.model.h2Connection;
+package com.dreambody.repository.h2Connection;
 
+import com.dreambody.model.h2Connection.H2Connection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
