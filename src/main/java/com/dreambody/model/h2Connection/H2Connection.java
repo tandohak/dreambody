@@ -1,5 +1,6 @@
-package com.dreambody.domain;
+package com.dreambody.model.h2Connection;
 
+import com.dreambody.model.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/* description : H2 연동 테스트를 위한 엔티티
- * auth : 이병덕
- * createDate : 2020.06.15
- * */
+/**
+ *   @author  : 이병덕
+ *   @description : H2 연동 테스트를 위한 엔티티
+ *   @date : 2020.06.15
+ */
 
 @Getter
 @NoArgsConstructor
@@ -32,3 +34,4 @@ public class H2Connection extends BaseTimeEntity {
         this.name = name;
     }
 }
+

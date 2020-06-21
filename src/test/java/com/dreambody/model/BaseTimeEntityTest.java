@@ -1,5 +1,7 @@
-package com.dreambody.domain;
+package com.dreambody.model;
 
+import com.dreambody.model.h2Connection.H2Connection;
+import com.dreambody.repository.h2Connection.H2ConnectionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +14,11 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-/*
-* description : BaseTimeEntity 테스트 코드
-* auth : 이병덕
-* createDate : 2020.06.15
-* */
+/**
+ *   @author : 이병덕
+ *   @description : BaseTimeEntity 테스트 코드
+ *   @date : 2020.06.15
+ */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
