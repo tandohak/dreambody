@@ -14,6 +14,7 @@ public class AppProperties {
 
     public static class Auth {
         private String tokenSecret;
+        private String payloadSecret;
         private long tokenExpirationMsec;
 
         public String getTokenSecret() {
@@ -22,6 +23,14 @@ public class AppProperties {
 
         public void setTokenSecret(String tokenSecret) {
             this.tokenSecret = tokenSecret;
+        }
+
+        public String getPayloadSecret() {
+            return payloadSecret;
+        }
+
+        public void setPayloadSecret(String payloadSecret) {
+            this.payloadSecret = payloadSecret;
         }
 
         public long getTokenExpirationMsec() {
