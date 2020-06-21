@@ -1,0 +1,109 @@
+
+# 스프링부트 기본 설정파일
+# JPA 스프링부트 기본 설정파일
+## jpa가 생성한 SQL 콘솔에 출력
+spring:
+  # OAuth2 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 927211755646-v5iiqsf4rtfbavlpta099q3vphe6p51l.apps.googleusercontent.com
+            client-secret: rpzkQWmqV4NFsLbQiC9Jix1e
+            scope:
+              - email
+              - profile
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+
+  jpa:
+    show_sql: true
+## SQL을 콘솔에서 보기 좋게 정리
+  properties:
+    hibernate:
+      format_sql: true
+## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
+      dialect: org.hibernate.dialect.H2Dialect
+## ddl 설정
+      ddl-auto: update
+    generate-ddl: true
+
+## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
+  h2:
+    console:
+      enabled: true
+### DataSource Setting
+  datasource:
+#### C:\Users\[사용자계정]\dreambody\h2_dreambody.mv.db로 접근 -> h2_dreambody.mv.db는 파일 만들면 됨
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
+    username: dreambody
+    password: dreambody
+
+# JWT Secret 키 추가
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+    # Token Payload 내용 암호화를 위한 시크릿 키
+    payloadSecret: DREAMBODYKEYSIZEONLY16BYTE
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:8080/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+
+
+
+### OAUTH TEST
+### URI : http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:8080/oauth2/redirect
+
+### GraphQl
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true
+#    cors:
+#      allowed-origins: http://some.domain.com
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+#    exception-handlers-enabled: true
+#    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+
+graphql.playground:
+  mapping: /playground
+  endpoint: /graphql
+  subscriptionsEndpoint: /subscriptions
+  staticPath.base: my-playground-resources-folder
+  enabled: true
+  pageTitle: Playground
+  cdn:
+    enabled: false
+    version: latest
+  settings:
+    editor.cursorShape: line
+    editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+    editor.fontSize: 14
+    editor.reuseHeaders: true
+    editor.theme: dark
+    general.betaUpdates: false
+    prettier.printWidth: 80
+    prettier.tabWidth: 2
+    prettier.useTabs: false
+    request.credentials: omit
+    schema.polling.enable: true
+    schema.polling.endpointFilter: "*localhost*"
+    schema.polling.interval: 2000
+    schema.disableComments: true
+    tracing.hideTracingResponse: true
+  headers:
+    headerFor: AllTabs
+  tabs:
+    - name: Example Tab
+      query: classpath:exampleQuery.graphql
+      headers:
+        SomeHeader: Some value
+      variables: classpath:variables.json
+      responses:
+        - classpath:exampleResponse1.json
+        - classpath:exampleResponse2.json

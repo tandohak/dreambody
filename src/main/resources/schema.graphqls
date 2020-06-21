@@ -1,0 +1,8 @@
+type Query {
+    getBook(isbn: String!): Book
+}
+
+type Book {
+    title: String!
+    isbn: String!
+}
