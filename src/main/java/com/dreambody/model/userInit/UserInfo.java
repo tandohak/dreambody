@@ -74,12 +74,10 @@ public class UserInfo extends BaseTimeEntity {
 
     // 일일 칼로리 계산
     public int calculationDailyIntakeCalorie() {
-        // 2020 하드 코딩 없애야 함.
-        int age = LocalDate.now().getDayOfYear() - Integer.parseInt(dateOfBirth.substring(0,4));
-        log.info("{}", LocalDate.now().getDayOfYear());
+        int currentYear = LocalDateTime.now().getYear();
+        int userBirthYear = Integer.parseInt(dateOfBirth.substring(0,4));
 
-//        return Period.between(birthDate, currentDate).getYears();
-
+        int age = currentYear - userBirthYear;
 
         if (1 == gender.getId()) {
            dailyIntakeCalorie = (int) (66 + (13.7 * currentWeight) + (5 * height) - (6.5 * age));
