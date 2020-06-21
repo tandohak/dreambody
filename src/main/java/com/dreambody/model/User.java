@@ -1,8 +1,8 @@
 package com.dreambody.model;
 
+import com.dreambody.model.userInit.UserInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
         @UniqueConstraint(columnNames = "email")
 })
 @Getter @Setter
+@Builder
+@NoArgsConstructor @AllArgsConstructor
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

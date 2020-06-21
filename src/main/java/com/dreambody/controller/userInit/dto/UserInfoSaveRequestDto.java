@@ -1,11 +1,11 @@
 package com.dreambody.controller.userInit.dto;
 
+import com.dreambody.model.User;
 import com.dreambody.model.userInit.Activity;
 import com.dreambody.model.userInit.Gender;
 import com.dreambody.model.userInit.Goal;
 import com.dreambody.model.userInit.UserInfo;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
  * @date : 2020.06.21
  */
 
-@Getter
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class UserInfoSaveRequestDto {
 
     private int currentWeight;
@@ -25,6 +26,7 @@ public class UserInfoSaveRequestDto {
     private Gender gender;
     private Goal goal;
     private Activity activity;
+    private User user;
 
     @Builder
     public UserInfoSaveRequestDto(int currentWeight, int goalWeight, int height, String dateOfBirth, Gender gender, Goal goal, Activity activity) {
@@ -45,6 +47,7 @@ public class UserInfoSaveRequestDto {
                 .gender(gender)
                 .goal(goal)
                 .activity(activity)
+                .user(user)
                 .build();
     }
 }

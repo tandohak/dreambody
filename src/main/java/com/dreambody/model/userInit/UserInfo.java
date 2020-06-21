@@ -1,13 +1,15 @@
 package com.dreambody.model.userInit;
 
 import com.dreambody.model.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.dreambody.model.User;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.rmi.activation.ActivationID;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 /**
  * @author : 이병덕
@@ -15,10 +17,11 @@ import java.time.LocalDateTime;
  * @date : 2020.06.21
  */
 
-@Getter
+@Slf4j
+@Getter @Setter
 @NoArgsConstructor
 @Table(name = "userInfos")
-@Entity
+@Entity @ToString
 public class UserInfo extends BaseTimeEntity {
 
     @Id
@@ -52,9 +55,12 @@ public class UserInfo extends BaseTimeEntity {
     @JoinColumn(name = "activity_id")
     private Activity activity;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-    public UserInfo(int currentWeight, int goalWeight, int height, String dateOfBirth, int dailyIntakeCalorie ,Gender gender, Goal goal, Activity activity) {
+    public UserInfo(int currentWeight, int goalWeight, int height, String dateOfBirth, int dailyIntakeCalorie ,Gender gender, Goal goal, Activity activity, User user) {
         this.currentWeight = currentWeight;
         this.goalWeight = goalWeight;
         this.height = height;
@@ -63,14 +69,19 @@ public class UserInfo extends BaseTimeEntity {
         this.gender = gender;
         this.goal = goal;
         this.activity = activity;
+        this.user = user;
     }
 
     // 일일 칼로리 계산
     public int calculationDailyIntakeCalorie() {
         // 2020 하드 코딩 없애야 함.
-        int age = 2020 - Integer.parseInt(dateOfBirth.substring(0,3));
+        int age = LocalDate.now().getDayOfYear() - Integer.parseInt(dateOfBirth.substring(0,4));
+        log.info("{}", LocalDate.now().getDayOfYear());
 
-        if ("남".equals(gender.getGender())) {
+//        return Period.between(birthDate, currentDate).getYears();
+
+
+        if (1 == gender.getId()) {
            dailyIntakeCalorie = (int) (66 + (13.7 * currentWeight) + (5 * height) - (6.5 * age));
 
            return dailyIntakeCalorie;
