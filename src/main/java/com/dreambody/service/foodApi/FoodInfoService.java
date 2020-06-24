@@ -1,6 +1,7 @@
 package com.dreambody.service.foodApi;
 
 import com.dreambody.controller.foodApi.dto.FoodInfoResponseDto;
+import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,8 +14,9 @@ public class FoodInfoService {
 
 //    public ResponseEntity<FoodInfoResponseDto> findFoodApi() {
     public FoodInfoResponseDto findFoodApi() {
-        System.out.println(restTemplate.getForObject("http://openapi.foodsafetykorea.go.kr/api/36d866bb8cd24a51bcfd/I2790/json/1/5", FoodInfoResponseDto.class).toString());
-        return restTemplate.getForObject("http://openapi.foodsafetykorea.go.kr/api/36d866bb8cd24a51bcfd/I2790/json/1/5", FoodInfoResponseDto.class);
+        FoodInfoResponseDto foodInfoResponseDto =  restTemplate.getForObject("http://openapi.foodsafetykorea.go.kr/api/36d866bb8cd24a51bcfd/I2790/json/1/1", FoodInfoResponseDto.class);
+        System.out.println(foodInfoResponseDto.getNUTR_CONT1());
+        return foodInfoResponseDto;
 //        return apiResultHandler();
     }
 
