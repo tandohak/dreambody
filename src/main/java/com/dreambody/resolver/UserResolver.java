@@ -8,6 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+/*
+ *   @author 홍윤표
+ *   @description 유저 객체 가져오는 GraphQL. UserResolver 생성.
+ *   @date 2020.06.23
+ */
 @Component
 @RequiredArgsConstructor
 public class UserResolver implements GraphQLQueryResolver {
