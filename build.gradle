@@ -39,6 +39,9 @@ dependencies {
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.1'
 
     // to embed Altair tool
