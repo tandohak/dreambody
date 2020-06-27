@@ -39,8 +39,9 @@ dependencies {
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.1.RELEASE'
+
+
 
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.1'
 
@@ -55,6 +56,8 @@ dependencies {
 
     // testing facilities
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:7.0.1'
+
+    compile group: 'com.graphql-java-kickstart', name: 'playground-spring-boot-starter', version: '5.10.0'
 
 }
 

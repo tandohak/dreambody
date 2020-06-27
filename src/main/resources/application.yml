@@ -80,7 +80,7 @@ graphql.playground:
   enabled: true
   pageTitle: Playground
   cdn:
-    enabled: false
+    enabled: true
     version: latest
   settings:
     editor.cursorShape: line
@@ -99,13 +99,16 @@ graphql.playground:
     schema.disableComments: true
     tracing.hideTracingResponse: true
   headers:
-    headerFor: AllTabs
+    Authorization: "Bearer "
   tabs:
-    - name: Example Tab
-      query: classpath:exampleQuery.graphql
-      headers:
-        SomeHeader: Some value
-      variables: classpath:variables.json
+    - name: infoSave
+      query: classpath:graphQl/infoSave/example.graphql
+      variables: classpath:graphQl/infoSave/variables.json
       responses:
-        - classpath:exampleResponse1.json
-        - classpath:exampleResponse2.json
+        - classpath:graphQl/infoSave/exampleResponse.json
+    - name: getInfo
+      query: classpath:graphQl/getInfo/example.graphql
+      variables: classpath:graphQl/getInfo/variables.json
+      responses:
+        - classpath:graphQl/getInfo/exampleResponse.json
+
