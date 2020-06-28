@@ -58,6 +58,7 @@ app:
   oauth2:
     authorizedRedirectUris:
       - http://localhost:8080/oauth2/redirect
+      - http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/redirect
       - myandroidapp://oauth2/redirect
       - myiosapp://oauth2/redirect
 
