@@ -1,0 +1,22 @@
+{
+  "data": {
+    "saveUserInfo": {
+      "currentWeight": 50,
+      "goalWeight": 70,
+      "height": 180,
+      "dateOfBirth": "1990-12-21",
+      "gender": {
+        "id": 1,
+        "gender": "남"
+      },
+      "goal": {
+        "id": 1,
+        "goal": "체중감량"
+      },
+      "activity": {
+        "id": 1,
+        "activity": "주로 좌식 생활을 하는 사람"
+      }
+    }
+  }
+}

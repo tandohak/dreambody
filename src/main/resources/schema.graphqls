@@ -1,0 +1,56 @@
+type Query {
+    getUser: User
+    getUserInfo: UserInfo
+}
+
+type Mutation {
+    saveUserInfo(userInfoWrapper: UserInfoWrapper): UserInfo
+}
+
+input UserInfoWrapper {
+    currentWeight: Int
+    goalWeight: Int
+    height: Int
+    dateOfBirth: String
+    gender: Int
+    goal: Int
+    activity: Int
+}
+
+type User {
+    id: Int!
+    name: String!
+    email: String!
+    emailVerified: Boolean!
+    provider: String!
+    providerId: String!
+}
+
+type UserInfo {
+    id: Int!
+    currentWeight: Int!
+    goalWeight: Int!
+    height: Int!
+    dateOfBirth: String!
+    dailyIntakeCalorie: Int!
+    user: User
+    gender: Gender
+    goal: Goal
+    activity: Activity
+}
+
+type Gender {
+    id: Int!
+    gender: String!
+}
+
+type Goal {
+    id: Int!
+    goal: String!
+}
+
+type Activity {
+    id: Int!
+    activity: String!
+    decimal: Float!
+}

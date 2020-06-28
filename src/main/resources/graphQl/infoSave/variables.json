@@ -1,0 +1,11 @@
+{
+  "userInfoWrapper": {
+    "currentWeight":50,
+    "goalWeight": 70,
+    "height":180,
+    "dateOfBirth": "1990-12-21",
+    "gender": 1,
+    "goal": 1,
+    "activity": 1
+  }
+}

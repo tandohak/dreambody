@@ -19,7 +19,8 @@ import java.time.Period;
 
 @Slf4j
 @Getter @Setter
-@NoArgsConstructor
+@AllArgsConstructor
+@Builder @NoArgsConstructor
 @Table(name = "userInfos")
 @Entity @ToString
 public class UserInfo extends BaseTimeEntity {

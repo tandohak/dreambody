@@ -1,9 +1,7 @@
 package com.dreambody.model.userInit;
 
 import com.dreambody.model.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,7 +11,9 @@ import javax.persistence.*;
  * @date : 2020.06.21
  */
 
-@Getter
+@Getter @Setter
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor
 @Table(name ="genders", uniqueConstraints = {
         @UniqueConstraint(columnNames = "gender")
@@ -27,10 +27,4 @@ public class Gender extends BaseTimeEntity {
     @Column(nullable = false, length = 1)
     private String gender;
 
-
-
-    @Builder
-    public Gender (String gender) {
-        this.gender = gender;
-    }
 }
