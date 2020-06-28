@@ -32,4 +32,4 @@ out/
 .vscode/
 
 ### custom
-**/src/main/resources/application-docker.properties
+application-docker.properties
