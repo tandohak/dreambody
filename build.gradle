@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.5-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 
@@ -56,6 +56,9 @@ dependencies {
 
     // testing facilities
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:7.0.1'
+
+    // MariaDB
+    compile('org.mariadb.jdbc:mariadb-java-client')
 
     compile group: 'com.graphql-java-kickstart', name: 'playground-spring-boot-starter', version: '5.10.0'
 
