@@ -59,6 +59,7 @@ app:
 
 ### OAUTH TEST
 ### URI : http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:8080/oauth2/redirect
+### URI : http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/authorize/google?redirect_uri=http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/redirect
 
 ### GraphQl
 graphql:
