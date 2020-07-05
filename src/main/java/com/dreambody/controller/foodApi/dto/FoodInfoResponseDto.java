@@ -13,6 +13,7 @@ import lombok.*;
 @Getter
 public class FoodInfoResponseDto {
 
+    // @JsonProperty : 응답 json의 명을 매핑
     @JsonProperty(value = "I2790")
     private I2790 i2790;
 }

@@ -1,0 +1,6 @@
+query {
+    getGender {
+        id
+        gender
+    }
+}
