@@ -89,7 +89,7 @@ graphql.playground:
   pageTitle: Playground
   cdn:
     enabled: true
-    version: latest
+    version: 1.7.16
   settings:
     editor.cursorShape: line
     editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
