@@ -44,6 +44,10 @@ public class UserInfoWrapper {
         return userInfo;
     }
 
+    // setter는 지양하면 좋겠어요
+    // 이유 : set이라는 메서드명을 보고 어떤 일을 하는지 알기가 쉽지 않기 때문
+    // 예) 주문취소라는 기능이 있다면 setOrder() 보단, cancleOrder() 같은 네이밍으로 바꾸는게 좋아 보여요
+    // 변수별로 하나 씩 != Null 보단, 한줄로 끝낼 수 있는 방법이 있을 거 같은데, 이 부분은 생각해 보면 있지 않을까 생각해용 ㅋ.ㅋ
     public UserInfo toEntity(UserInfo userInfo) {
         if (currentWeight != null) {
             userInfo.setCurrentWeight(currentWeight);
