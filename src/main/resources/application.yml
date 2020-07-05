@@ -119,3 +119,18 @@ graphql.playground:
       variables: classpath:graphQl/getInfo/variables.json
       responses:
         - classpath:graphQl/getInfo/exampleResponse.json
+    - name: getGender
+      query: classpath:graphQl/getGender/example.graphql
+      variables: classpath:graphQl/getGender/variables.json
+      responses:
+        - classpath:graphQl/getGender/exampleResponse.json
+    - name: getActivity
+      query: classpath:graphQl/getActivity/example.graphql
+      variables: classpath:graphQl/getActivity/variables.json
+      responses:
+        - classpath:graphQl/getActivity/exampleResponse.json
+    - name: getGoal
+      query: classpath:graphQl/getGoal/example.graphql
+      variables: classpath:graphQl/getGoal/variables.json
+      responses:
+        - classpath:graphQl/getGoal/exampleResponse.json

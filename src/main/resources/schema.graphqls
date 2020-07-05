@@ -1,6 +1,9 @@
 type Query {
     getUser: User
     getUserInfo: UserInfo
+    getGender: [Gender]
+    getActivity: [Activity]
+    getGoal: [Goal]
 }
 
 type Mutation {
