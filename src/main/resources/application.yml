@@ -109,28 +109,28 @@ graphql.playground:
   headers:
     Authorization: "Bearer "
   tabs:
-    - name: infoSave
-      query: classpath:graphQl/infoSave/example.graphql
-      variables: classpath:graphQl/infoSave/variables.json
+    - name: SaveUserInfo
+      query: classpath:graphQl/example/userInfo/saveUserInfo.graphql
+      variables: classpath:graphQl/example/userInfo/saveUserInfoVariables.json
       responses:
-        - classpath:graphQl/infoSave/exampleResponse.json
-    - name: getInfo
-      query: classpath:graphQl/getInfo/example.graphql
-      variables: classpath:graphQl/getInfo/variables.json
+        - classpath:graphQl/example/userInfo/saveUserInfoResponse.json
+    - name: GetUserInfo
+      query: classpath:graphQl/example/userInfo/getUserInfo.graphql
+      variables: classpath:graphQl/example/userInfo/getUserInfoVariables.json
       responses:
-        - classpath:graphQl/getInfo/exampleResponse.json
-    - name: getGender
-      query: classpath:graphQl/getGender/example.graphql
-      variables: classpath:graphQl/getGender/variables.json
+        - classpath:graphQl/example/userInfo/getUserInfoResponse.json
+    - name: GetGenders
+      query: classpath:graphQl/example/gender/getGenders.graphql
+      variables: classpath:graphQl/example/gender/getGendersVariables.json
       responses:
-        - classpath:graphQl/getGender/exampleResponse.json
-    - name: getActivity
-      query: classpath:graphQl/getActivity/example.graphql
-      variables: classpath:graphQl/getActivity/variables.json
+        - classpath:graphQl/example/gender/getGendersResponse.json
+    - name: GetActivities
+      query: classpath:graphQl/example/activity/getActivities.graphql
+      variables: classpath:graphQl/example/activity/getActivitiesVariables.json
       responses:
-        - classpath:graphQl/getActivity/exampleResponse.json
-    - name: getGoal
-      query: classpath:graphQl/getGoal/example.graphql
-      variables: classpath:graphQl/getGoal/variables.json
+        - classpath:graphQl/example/activity/getActivitiesResponse.json
+    - name: GetGoals
+      query: classpath:graphQl/example/goal/getGoals.graphql
+      variables: classpath:graphQl/example/goal/getGoalsVariables.json
       responses:
-        - classpath:graphQl/getGoal/exampleResponse.json
+        - classpath:graphQl/example/goal/getGoalsResponse.json
