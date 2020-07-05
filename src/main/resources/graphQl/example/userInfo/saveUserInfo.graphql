@@ -1,11 +1,9 @@
-query getUser {
-    getUserInfo {
-        id
+mutation SaveUserInfo($userInfoWrapper: UserInfoWrapper) {
+    saveUserInfo(userInfoWrapper: $userInfoWrapper) {
         currentWeight
-        dailyIntakeCalorie
-        dateOfBirth
         goalWeight
         height
+        dateOfBirth
         gender {
             id
             gender
@@ -17,14 +15,6 @@ query getUser {
         activity {
             id
             activity
-        }
-        user {
-            id
-            name
-            email
-            emailVerified
-            provider
-            providerId
         }
     }
 }

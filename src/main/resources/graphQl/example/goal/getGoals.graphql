@@ -1,5 +1,5 @@
-query {
-    getGoal {
+query GetGoals{
+     goals{
         id
         goal
     }

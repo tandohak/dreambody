@@ -1,19 +1,13 @@
 package com.dreambody.resolver;
 
-import com.dreambody.controller.userInit.dto.GenderResponseDto;
-import com.dreambody.model.User;
 import com.dreambody.model.userInit.Gender;
-import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.userInit.GenderRepository;
-import com.dreambody.repository.userInit.UserInfoRepository;
-import com.dreambody.security.oauth2.user.UserPrincipal;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author 이병덕
@@ -27,9 +21,8 @@ public class GenderResolver implements GraphQLQueryResolver {
 
     private final GenderRepository genderRepository;
 
-    public List<Gender> getGender() {
+    @GraphQLQuery(name = "genders")
+    public List<Gender> getGenders() {
         return genderRepository.findAll();
     }
-
-
 }

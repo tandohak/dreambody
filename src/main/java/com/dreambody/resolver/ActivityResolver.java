@@ -5,6 +5,7 @@ import com.dreambody.model.userInit.Gender;
 import com.dreambody.repository.userInit.ActivityRepository;
 import com.dreambody.repository.userInit.GenderRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +23,8 @@ public class ActivityResolver implements GraphQLQueryResolver {
 
     private final ActivityRepository activityRepository;
 
-    public List<Activity> getActivity() {
+    @GraphQLQuery(name = "activities")
+    public List<Activity> getActivities() {
         return activityRepository.findAll();
     }
-
-
 }

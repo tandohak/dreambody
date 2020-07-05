@@ -5,6 +5,7 @@ import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.userInit.UserInfoRepository;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ public class UserInfoResolver implements GraphQLQueryResolver {
 
     private final UserInfoRepository userInfoRepository;
 
+    @GraphQLQuery(name = "userInfo")
     public UserInfo getUserInfo() {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());

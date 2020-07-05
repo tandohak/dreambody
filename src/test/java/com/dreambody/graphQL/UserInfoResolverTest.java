@@ -68,7 +68,7 @@ public class UserInfoResolverTest {
 //
 //    @Test
 //    public void 유저정보_가져오기_테스트() throws IOException {
-//        GraphQLResponse response = graphQLTestTemplate.postForResource("graphQl/getInfo/example.graphql");
+//        GraphQLResponse response = graphQLTestTemplate.postForResource("graphQl/example/userInfo/getUserInfo.graphql");
 //        assertNotNull(response);
 //        assertTrue(response.isOk());
 //        UserInfo userInfo = response.get("$.data.getUserInfo", UserInfo.class);
@@ -90,7 +90,7 @@ public class UserInfoResolverTest {
 //        innerVariables.put("activity", 1);
 //        variables.put("userInfoWrapper" , innerVariables);
 //
-//        GraphQLResponse response = graphQLTestTemplate.perform("graphQl/infoSave/example.graphql", variables);
+//        GraphQLResponse response = graphQLTestTemplate.perform("graphQl/example/userInfo/getUserInfo.graphql", variables);
 //
 //        assertNotNull(response);
 //        assertTrue(response.isOk());
