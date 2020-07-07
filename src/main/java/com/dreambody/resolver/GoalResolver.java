@@ -1,10 +1,9 @@
 package com.dreambody.resolver;
 
-import com.dreambody.model.userInit.Gender;
 import com.dreambody.model.userInit.Goal;
-import com.dreambody.repository.userInit.GenderRepository;
 import com.dreambody.repository.userInit.GoalRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +21,8 @@ public class GoalResolver implements GraphQLQueryResolver {
 
     private final GoalRepository goalRepository;
 
-    public List<Goal> getGoal() {
+    @GraphQLQuery(name = "goals")
+    public List<Goal> getGoals() {
         return goalRepository.findAll();
     }
-
-
 }

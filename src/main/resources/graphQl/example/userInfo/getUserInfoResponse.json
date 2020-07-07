@@ -1,6 +1,6 @@
 {
   "data": {
-    "getUserInfo": {
+    "userInfo": {
       "id": 1,
       "currentWeight": 50,
       "dailyIntakeCalorie": 0,

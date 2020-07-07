@@ -1,0 +1,6 @@
+query GetActivities {
+    activities {
+        id
+        activity
+    }
+}

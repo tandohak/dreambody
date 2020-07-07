@@ -57,6 +57,11 @@ dependencies {
     // testing facilities
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:7.0.1'
 
+    // graphQL과 java간의 매핑을 위함
+    // @GraphQLQuery(name = "user"): graphQL의 query명이 user이고, java의 메서드 명이 getUser일 때 사용.
+    // 어노테이션을 사용하지 않으면, 서로 명칭이 같아야 매핑 됨. 하지만 java와 graphQL의 명명 규칙이 다른 면이 있어서 사용.
+    compile 'io.leangen.graphql:spqr:0.10.0'
+
     // MariaDB
     compile('org.mariadb.jdbc:mariadb-java-client')
 
