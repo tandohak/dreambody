@@ -3,6 +3,9 @@
 # JPA 스프링부트 기본 설정파일
 ## jpa가 생성한 SQL 콘솔에 출력
 spring:
+  profiles:
+    active: local
+#    active: docker
   # OAuth2 설정
   security:
     oauth2:
@@ -15,38 +18,6 @@ spring:
               - email
               - profile
             redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
-
-################################RDS로 바로 연동하여 사용하기 때문에 주석, 나중에 로컬, 운영환경 나누어서 .yml파일 관리 하면 됨.#####################################################################
-#  jpa:
-#    show_sql: true
-### SQL을 콘솔에서 보기 좋게 정리
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        format_sql: true
-#  ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
-#        dialect: org.hibernate.dialect.H2Dialect
-#  ## ddl 설정
-##        ddl-auto: update
-#    generate-ddl: true
-#
-### 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
-#  h2:
-#    console:
-#      enabled: true
-#### DataSource Setting
-#  datasource:
-##### C:\Users\[사용자계정]\dreambody\h2_dreambody.mv.db로 접근 -> h2_dreambody.mv.db는 파일 만들면 됨
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
-#    username: dreambody
-#    password: dreambody
-#####################################################################################################
-
-  # 운영 DB관리 방법을 아직 안정해서, git hub에 올리지만 않고, docker로 이미지화 한다.
-  profiles:
-    include: docker
 
 # JWT Secret 키 추가
 app:
@@ -89,7 +60,7 @@ graphql.playground:
   pageTitle: Playground
   cdn:
     enabled: true
-    version: latest
+    version: 1.7.16
   settings:
     editor.cursorShape: line
     editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
@@ -134,3 +105,38 @@ graphql.playground:
       variables: classpath:graphQl/example/goal/getGoalsVariables.json
       responses:
         - classpath:graphQl/example/goal/getGoalsResponse.json
+
+---
+spring:
+  profiles: local
+
+  ################################RDS로 바로 연동하여 사용하기 때문에 주석, 나중에 로컬, 운영환경 나누어서 .yml파일 관리 하면 됨.#####################################################################
+  jpa:
+    show_sql: true
+    ## SQL을 콘솔에서 보기 좋게 정리
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
+        dialect: org.hibernate.dialect.H2Dialect
+    ## ddl 설정
+    #        ddl-auto: update
+    generate-ddl: true
+
+  ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
+  h2:
+    console:
+      enabled: true
+  ### DataSource Setting
+  datasource:
+    #### C:\Users\[사용자계정]\dreambody\h2_dreambody.mv.db로 접근 -> h2_dreambody.mv.db는 파일 만들면 됨
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
+    username: dreambody
+    password: dreambody
+#####################################################################################################
+
+---
+# 운영 DB관리 방법을 아직 안정해서, git hub에 올리지만 않고, docker로 이미지화 한다.

@@ -4,6 +4,8 @@ import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.rmi.activation.ActivationID;
@@ -43,6 +45,9 @@ public class UserInfo extends BaseTimeEntity {
 
     @Column(nullable = false)
     private int dailyIntakeCalorie;
+
+    @Column(unique = true)
+    private LocalDate registrationDate;
 
     @ManyToOne
     @JoinColumn(name = "gender_id")

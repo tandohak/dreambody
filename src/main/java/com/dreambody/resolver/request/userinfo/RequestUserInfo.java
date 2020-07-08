@@ -1,4 +1,4 @@
-package com.dreambody.model.wrapper;
+package com.dreambody.resolver.request.userinfo;
 
 import com.dreambody.model.userInit.Activity;
 import com.dreambody.model.userInit.Gender;
@@ -13,7 +13,7 @@ import lombok.*;
  */
 @NoArgsConstructor @AllArgsConstructor
 @Builder @Getter @Setter @ToString
-public class UserInfoWrapper {
+public class RequestUserInfo {
     private Integer currentWeight;
 
     private Integer goalWeight;

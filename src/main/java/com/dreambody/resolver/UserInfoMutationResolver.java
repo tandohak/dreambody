@@ -2,7 +2,7 @@ package com.dreambody.resolver;
 
 import com.dreambody.model.User;
 import com.dreambody.model.userInit.UserInfo;
-import com.dreambody.model.wrapper.UserInfoWrapper;
+import com.dreambody.resolver.request.userinfo.RequestUserInfo;
 import com.dreambody.repository.userInit.UserInfoRepository;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import graphql.kickstart.tools.GraphQLMutationResolver;
@@ -25,7 +25,7 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
     private final UserInfoRepository userInfoRepository;
 
     @GraphQLMutation(name = "saveUserInfo")
-    public UserInfo saveUserInfo(UserInfoWrapper userInfoWrapper) {
+    public UserInfo saveUserInfo(RequestUserInfo userInfoWrapper) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
