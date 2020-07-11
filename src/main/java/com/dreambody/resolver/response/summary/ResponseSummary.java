@@ -8,7 +8,11 @@ import lombok.*;
  *   @date 2020.07.11 18:51:54
  */
 
-@Builder @Data @ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
+@ToString
 public class ResponseSummary {
     private Integer intakeCalorie;
     private Integer goalCalorie;

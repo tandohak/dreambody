@@ -2,6 +2,7 @@ package com.dreambody.service.facade;
 
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
+import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,8 +44,29 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
             requestSummary.setRegistrationDate(LocalDate.now());
         }
 
-        // 섭취 칼로리 계산
-        List<UserFoodMapping> userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDate(userInfo.getUser(), requestSummary.getRegistrationDate());
+        Integer goalCalorie = userInfo.calculationDailyIntakeCalorie();
+        Integer goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate();
+        Integer goalFat = userInfo.calculationDailyIntakeFat();
+        Integer goalProtein = userInfo.calculationDailyIntakeProtein();
+
+        List<UserFoodMapping> userFoodMappings = new ArrayList<>();
+
+        // 식사 타입이 있을 경우.
+        if (requestSummary.getMealType() != null) {
+            MealType mealType = MealType.builder().id(requestSummary.getMealType()).build();
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType);
+
+            goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType());
+            goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType());
+            goalFat = userInfo.calculationDailyIntakeFat(requestSummary.getMealType());
+            goalProtein = userInfo.calculationDailyIntakeProtein(requestSummary.getMealType());
+        }
+
+        // 식사 타입이 없을 경우.
+        if (requestSummary.getMealType() == null) {
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDate(tempUser, requestSummary.getRegistrationDate());
+
+        }
 
         Float intakeCalorie = 0f;
         Float intakeCarbohydrate = 0f;
@@ -59,15 +82,16 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
         }
 
         return ResponseSummary.builder()
-                .goalCalorie(userInfo.calculationDailyIntakeCalorie())
-                .goalCarbohydrate(userInfo.calculationDailyIntakeCarbohydrate())
-                .goalFat(userInfo.calculationDailyintakeFat())
-                .goalProtein(userInfo.calculationDailyIntakeProtien())
+                .goalCalorie(goalCalorie)
+                .goalCarbohydrate(goalCarbohydrate)
+                .goalFat(goalFat)
+                .goalProtein(goalProtein)
                 .intakeCalorie(intakeCalorie.intValue())
                 .intakeCarbohydrate(intakeCarbohydrate.intValue())
                 .intakeFat(intakeFat.intValue())
                 .intakeProtein(intakeProtein.intValue())
                 .build();
     }
+
 
 }

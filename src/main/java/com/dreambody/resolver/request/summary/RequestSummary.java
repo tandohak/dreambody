@@ -13,4 +13,6 @@ import java.time.LocalDate;
 public class RequestSummary {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
+
+    private Long mealType;
 }

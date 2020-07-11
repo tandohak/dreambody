@@ -12,6 +12,7 @@ type Mutation {
 
 input RequestSummary {
     registrationDate: String
+    mealType: Int
 }
 
 input RequestUserInfo {
