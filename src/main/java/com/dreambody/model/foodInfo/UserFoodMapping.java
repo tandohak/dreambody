@@ -2,6 +2,7 @@ package com.dreambody.model.foodInfo;
 
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,21 +19,16 @@ import java.time.LocalDate;
  * @date : 2020.07.08 22:08:36
  */
 
-@Entity @Getter @Builder @NoArgsConstructor
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class UserFoodMapping extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private Long foodIdx;
-
-    @Column(nullable = false)
-    private Long userIdx;
-
-    @Column(nullable = false)
-    private Long mealIdx;
 
     @Min(value = 1)
     @Max(value = 100)

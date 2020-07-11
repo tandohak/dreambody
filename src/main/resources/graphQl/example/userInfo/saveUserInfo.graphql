@@ -1,5 +1,5 @@
-mutation saveUserInfo($requestUserInfo: RequestUserInfo) {
-    saveUserInfo(requestUserInfo: $requestUserInfo) {
+mutation saveUserInfo($userInfoRequest: UserInfoRequest) {
+    saveUserInfo(userInfoRequest: $userInfoRequest) {
         currentWeight
         goalWeight
         height

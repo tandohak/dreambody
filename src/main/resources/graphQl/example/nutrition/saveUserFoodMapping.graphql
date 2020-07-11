@@ -1,0 +1,3 @@
+mutation SaveUserFoodMapping($foodInfoRequest: FoodInfoRequest) {
+    saveUserFoodMapping(foodInfoRequest: $foodInfoRequest)
+}

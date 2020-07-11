@@ -1,0 +1,6 @@
+query GetMealTypes {
+    mealTypes {
+        id
+        type
+    }
+}

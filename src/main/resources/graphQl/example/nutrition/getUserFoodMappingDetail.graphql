@@ -1,0 +1,30 @@
+#query GetUserFoodMappingDetail($mealTypeId: MealTypeId) {
+#    userFoodMappingDetail(mealTypeId: $mealTypeId) {
+query GetUserFoodMappingDetail {
+    userFoodMappingDetail {
+        id
+        quantity
+        registrationDate
+        mealType {
+            id
+            type
+        }
+        foodInfo {
+            id
+            code
+            name
+            carbohydrate
+            calorie
+            fat
+            protein
+        }
+        User {
+            id
+            name
+            email
+            emailVerified
+            provider
+            providerId
+        }
+    }
+}

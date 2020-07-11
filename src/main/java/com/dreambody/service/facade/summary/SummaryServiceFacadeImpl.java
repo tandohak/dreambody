@@ -1,4 +1,4 @@
-package com.dreambody.service.facade;
+package com.dreambody.service.facade.summary;
 
 import com.dreambody.model.User;
 import com.dreambody.model.userInit.UserInfo;

@@ -1,7 +1,7 @@
 package com.dreambody.resolver;
 
 import com.dreambody.model.userInit.UserInfo;
-import com.dreambody.resolver.request.userinfo.RequestUserInfo;
+import com.dreambody.resolver.request.userinfo.UserInfoRequest;
 import com.dreambody.service.UserInfoService;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.leangen.graphql.annotations.GraphQLMutation;
@@ -22,7 +22,7 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
     private final UserInfoService userInfoService;
 
     @GraphQLMutation(name = "saveUserInfo")
-    public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
-        return userInfoService.saveUserInfo(requestUserInfo);
+    public UserInfo saveUserInfo(UserInfoRequest userInfoRequest) {
+        return userInfoService.saveUserInfo(userInfoRequest);
     }
 }

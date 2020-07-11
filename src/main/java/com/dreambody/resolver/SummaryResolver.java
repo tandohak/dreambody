@@ -1,7 +1,7 @@
 package com.dreambody.resolver;
 
 import com.dreambody.resolver.response.summary.SummaryResponse;
-import com.dreambody.service.facade.SummaryServiceFacade;
+import com.dreambody.service.facade.summary.SummaryServiceFacade;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;

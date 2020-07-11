@@ -1,4 +1,4 @@
-package com.dreambody.service.facade;
+package com.dreambody.service.facade.summary;
 
 import com.dreambody.resolver.response.summary.SummaryResponse;
 import org.springframework.stereotype.Service;

@@ -3,14 +3,22 @@ type Query {
     genders: [Gender]
     activities: [Activity]
     goals: [Goal]
+    mealTypes: [MealTypeResponse]
     summary: Summary
+    #    userFoodMappingDetail(mealTypeId: MealTypeId): [UserFoodMapping]
+        userFoodMappingDetail: [UserFoodMapping]
 }
 
 type Mutation {
-    saveUserInfo(requestUserInfo: RequestUserInfo): UserInfo
+    saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
+    saveUserFoodMapping(foodInfoRequest: FoodInfoRequest): Int
 }
 
-input RequestUserInfo {
+input MealTypeId {
+    mealTypeId: Int!
+}
+
+input UserInfoRequest {
     currentWeight: Int
     goalWeight: Int
     height: Int
@@ -18,6 +26,20 @@ input RequestUserInfo {
     gender: Int
     goal: Int
     activity: Int
+}
+
+input FoodInfoRequest {
+    code: String
+    name: String
+    protein: Float
+    fat: Float
+    carbohydrate: Float
+    calorie: Float
+    registrationDate: String
+    foodInfo: Int
+    user: Int
+    mealType: Int
+    quantity: Int
 }
 
 type User {
@@ -68,4 +90,33 @@ type Summary {
     goalProtein: Int!
     intakeFat: Int!
     goalFat: Int!
+}
+
+type MealTypeResponse {
+    id: Int!
+    type: String!
+}
+
+type UserFoodMapping {
+    id: Int!
+    quantity: Int!
+    registrationDate: String!
+    mealType: MealType!
+    foodInfo: FoodInfo!
+    User: User!
+}
+
+type MealType {
+    id: Int!
+    type: String!
+}
+
+type FoodInfo {
+    id: Int!
+    code: String!
+    name: String!
+    protein: Float!
+    fat: Float!
+    carbohydrate: Float!
+    calorie: Float!
 }

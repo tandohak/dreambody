@@ -1,6 +1,10 @@
 package com.dreambody.model.foodInfo;
 
 import com.dreambody.model.BaseTimeEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,6 +15,10 @@ import javax.persistence.*;
  * @date : 2020.06.21
  */
 
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class MealType extends BaseTimeEntity {
 

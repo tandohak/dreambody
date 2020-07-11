@@ -15,7 +15,7 @@ import java.time.LocalDate;
  */
 @NoArgsConstructor @AllArgsConstructor
 @Builder @Getter @Setter @ToString
-public class RequestUserInfo {
+public class UserInfoRequest {
     private Integer currentWeight;
 
     private Integer goalWeight;
