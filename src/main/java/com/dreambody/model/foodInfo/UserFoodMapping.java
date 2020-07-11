@@ -18,7 +18,7 @@ import java.time.LocalDate;
  * @date : 2020.07.08 22:08:36
  */
 
-@Entity @Getter @Builder
+@Entity @Getter @Builder @NoArgsConstructor
 public class UserFoodMapping extends BaseTimeEntity {
 
     @Id
