@@ -27,5 +27,5 @@ public class Activity extends BaseTimeEntity {
     private String activity;
 
     @Column(nullable = false)
-    private float decimal;
+    private float volume;
 }

@@ -1,5 +1,4 @@
 type Query {
-#    user: User
     userInfo: UserInfo
     genders: [Gender]
     activities: [Activity]
@@ -7,10 +6,10 @@ type Query {
 }
 
 type Mutation {
-    saveUserInfo(userInfoWrapper: UserInfoWrapper): UserInfo
+    saveUserInfo(requestUserInfo: RequestUserInfo): UserInfo
 }
 
-input UserInfoWrapper {
+input RequestUserInfo {
     currentWeight: Int
     goalWeight: Int
     height: Int
@@ -55,5 +54,5 @@ type Goal {
 type Activity {
     id: Int!
     activity: String!
-    decimal: Float!
+    volume: Float!
 }

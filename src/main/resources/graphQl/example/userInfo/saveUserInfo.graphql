@@ -1,5 +1,5 @@
-mutation SaveUserInfo($userInfoWrapper: UserInfoWrapper) {
-    saveUserInfo(userInfoWrapper: $userInfoWrapper) {
+mutation saveUserInfo($requestUserInfo: RequestUserInfo) {
+    saveUserInfo(requestUserInfo: $requestUserInfo) {
         currentWeight
         goalWeight
         height
