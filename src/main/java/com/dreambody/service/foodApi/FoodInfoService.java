@@ -21,6 +21,7 @@ public class FoodInfoService {
         log.info("statusCode : " + foodInfoResponseDto.getStatusCode().toString());
         log.info("Header : " + foodInfoResponseDto.getHeaders().toString());
         log.info("body : " + foodInfoResponseDto.getBody().getI2790().toString());
+
         return foodInfoResponseDto;
     }
 }
