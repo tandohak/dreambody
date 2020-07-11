@@ -1,8 +1,6 @@
 package com.dreambody.service.facade;
 
 import com.dreambody.model.User;
-import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
@@ -12,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * @author 홍윤표

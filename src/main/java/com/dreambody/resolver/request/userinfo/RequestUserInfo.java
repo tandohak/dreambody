@@ -8,9 +8,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-/*
+/**
  *   @author 홍윤표
- *   @description UserInfo 저장을 위한 wrapper 클래스 생성.
+ *   @description UserInfo 저장을 위한 request 클래스 생성.
  *   @date 2020.06.23 01:11:08
  */
 @NoArgsConstructor @AllArgsConstructor

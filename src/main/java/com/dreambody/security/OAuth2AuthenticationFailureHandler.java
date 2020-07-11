@@ -15,6 +15,12 @@ import java.io.IOException;
 
 import static com.dreambody.security.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
+/**
+ *   @author 홍윤표
+ *   @description Oauth2 인증 실패 핸들러.
+ *   @date 2020.07.11 18:57:32
+ */
+
 @Component
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 

@@ -4,7 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.lang.annotation.*;
 
-/*
+/**
  *   @author 홍윤표
  *   @description 컨트롤러에서 인증된 UserPrincipal 주입 받기 위해 생성.
  *   @date 2020.06.16 17:05:09
