@@ -19,5 +19,5 @@ public class MealType extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String mealType;
+    private String type;
 }

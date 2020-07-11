@@ -25,7 +25,7 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
     private final UserInfoRepository userInfoRepository;
 
     @GraphQLMutation(name = "saveUserInfo")
-    public UserInfo saveUserInfo(RequestUserInfo userInfoWrapper) {
+    public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
@@ -34,12 +34,12 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
         // 개선하상
         // 1. service로 로직 빼기
         if (userInfo == null) {
-            userInfo = userInfoWrapper.toEntity();
+            userInfo = requestUserInfo.toEntity();
             userInfo.setUser(User.builder().id(userPrincipal.getId()).build());
 
             return userInfoRepository.save(userInfo);
         }
 
-        return userInfoRepository.save(userInfoWrapper.toEntity(userInfo));
+        return userInfoRepository.save(requestUserInfo.toEntity(userInfo));
     }
 }

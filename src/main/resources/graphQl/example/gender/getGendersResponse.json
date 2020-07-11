@@ -1,6 +1,6 @@
 {
   "data": {
-    "getGender": [
+    "genders": [
       {
         "id": 1,
         "gender": "남"
