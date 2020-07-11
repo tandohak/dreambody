@@ -1,6 +1,6 @@
 {
   "data": {
-    "getGoal": [
+    "goals": [
       {
         "id": 1,
         "goal": "체중감량"
