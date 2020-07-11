@@ -40,6 +40,7 @@ type UserInfo {
     gender: Gender
     goal: Goal
     activity: Activity
+    registrationDate: String!
 }
 
 type Gender {
@@ -60,6 +61,7 @@ type Activity {
 
 type Summary {
     intakeCalorie: Int!
+    goalCalorie: Int!
     intakeCarbohydrate: Int!
     goalCarbohydrate: Int!
     intakeProtein: Int!

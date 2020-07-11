@@ -1,15 +1,12 @@
 package com.dreambody.resolver;
 
-import com.dreambody.model.User;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.resolver.request.userinfo.RequestUserInfo;
-import com.dreambody.repository.userInit.UserInfoRepository;
-import com.dreambody.security.oauth2.user.UserPrincipal;
+import com.dreambody.service.UserInfoService;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 
@@ -22,24 +19,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserInfoMutationResolver implements GraphQLMutationResolver {
-    private final UserInfoRepository userInfoRepository;
+    private final UserInfoService userInfoService;
 
     @GraphQLMutation(name = "saveUserInfo")
     public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
-        UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
-
-        // 컨트롤러 개념인 wrapper에서 할 일이 아닌 것 같아용.
-        // 개선하상
-        // 1. service로 로직 빼기
-        if (userInfo == null) {
-            userInfo = requestUserInfo.toEntity();
-            userInfo.setUser(User.builder().id(userPrincipal.getId()).build());
-
-            return userInfoRepository.save(userInfo);
-        }
-
-        return userInfoRepository.save(requestUserInfo.toEntity(userInfo));
+        return userInfoService.saveUserInf(requestUserInfo);
     }
 }

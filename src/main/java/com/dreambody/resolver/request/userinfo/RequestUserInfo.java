@@ -6,6 +6,8 @@ import com.dreambody.model.userInit.Goal;
 import com.dreambody.model.userInit.UserInfo;
 import lombok.*;
 
+import java.time.LocalDate;
+
 /*
  *   @author 홍윤표
  *   @description UserInfo 저장을 위한 wrapper 클래스 생성.
@@ -39,6 +41,7 @@ public class RequestUserInfo {
                 .activity(Activity.builder().id(activity).build())
                 .build();
 
+        userInfo.setRegistrationDate(LocalDate.now());
         userInfo.calculationDailyIntakeCalorie();
 
         return userInfo;
@@ -77,6 +80,7 @@ public class RequestUserInfo {
             userInfo.setActivity(Activity.builder().id(activity).build());
         }
 
+        userInfo.setRegistrationDate(LocalDate.now());
         userInfo.calculationDailyIntakeCalorie();
 
         return userInfo;
