@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.rmi.activation.ActivationID;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -91,5 +92,20 @@ public class UserInfo extends BaseTimeEntity {
         dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
 
         return dailyIntakeCalorie;
+    }
+
+    // added by 홍윤표. 일일 단백질 섭취량 계산 추가. (2020.07.11 19:55:24)
+    public int calculationDailyIntakeProtien(){
+        return (int) (calculationDailyIntakeCalorie() * 0.3) / 4;
+    }
+
+    // added by 홍윤표. 일일 지방 섭취량 계산 추가. (2020.07.11 19:55:27)
+    public int calculationDailyintakeFat(){
+        return (int) (calculationDailyIntakeCalorie() * 0.4) / 9;
+    }
+
+    // added by 홍윤표. 일일 탄수화물 섭취량 계산 추가. (2020.07.11 19:55:29)
+    public int calculationDailyIntakeCarbohydrate(){
+        return (int) (calculationDailyIntakeCalorie() * 0.3) / 4;
     }
 }

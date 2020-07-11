@@ -1,6 +1,7 @@
 package com.dreambody.service.facade;
 
-import com.dreambody.resolver.response.summary.SummaryResponse;
+import com.dreambody.resolver.request.summary.RequestSummary;
+import com.dreambody.resolver.response.summary.ResponseSummary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,5 +12,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SummaryServiceFacade {
-    SummaryResponse loadSummaryData();
+    ResponseSummary loadSummaryData(RequestSummary requestSummary);
 }

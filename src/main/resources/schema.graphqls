@@ -3,11 +3,15 @@ type Query {
     genders: [Gender]
     activities: [Activity]
     goals: [Goal]
-    summary: Summary
+    summary(requestSummary: RequestSummary): Summary
 }
 
 type Mutation {
     saveUserInfo(requestUserInfo: RequestUserInfo): UserInfo
+}
+
+input RequestSummary {
+    registrationDate: String
 }
 
 input RequestUserInfo {
