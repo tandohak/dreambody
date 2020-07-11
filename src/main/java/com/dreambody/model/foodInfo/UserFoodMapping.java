@@ -2,6 +2,8 @@ package com.dreambody.model.foodInfo;
 
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,7 +18,7 @@ import java.time.LocalDate;
  * @date : 2020.07.08 22:08:36
  */
 
-@Entity
+@Entity @Getter @Builder
 public class UserFoodMapping extends BaseTimeEntity {
 
     @Id

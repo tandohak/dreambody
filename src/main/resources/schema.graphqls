@@ -3,6 +3,7 @@ type Query {
     genders: [Gender]
     activities: [Activity]
     goals: [Goal]
+    summary: Summary
 }
 
 type Mutation {
@@ -39,6 +40,7 @@ type UserInfo {
     gender: Gender
     goal: Goal
     activity: Activity
+    registrationDate: String!
 }
 
 type Gender {
@@ -55,4 +57,15 @@ type Activity {
     id: Int!
     activity: String!
     volume: Float!
+}
+
+type Summary {
+    intakeCalorie: Int!
+    goalCalorie: Int!
+    intakeCarbohydrate: Int!
+    goalCarbohydrate: Int!
+    intakeProtein: Int!
+    goalProtein: Int!
+    intakeFat: Int!
+    goalFat: Int!
 }

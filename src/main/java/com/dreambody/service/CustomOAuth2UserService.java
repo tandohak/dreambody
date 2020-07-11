@@ -19,6 +19,11 @@ import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
+/**
+ *   @author 홍윤표
+ *   @description OAuth 유저 인증을 위한 CustomOAuth2UserService 생성.
+ *   @date 2020.07.11 19:01:07
+ */
 
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {

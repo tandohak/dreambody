@@ -17,6 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ *   @author 홍윤표
+ *   @description 토큰 생성을 위한 필터 생성.
+ *   @date 2020.07.11 19:00:04
+ */
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired

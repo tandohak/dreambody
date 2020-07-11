@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-/*
+/**
  *   @author 홍윤표
  *   @description GraphQL. UserInfoResolver 생성.
  *   @date 2020.06.23 00:40:04

@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ *   @author 홍윤표
+ *   @description 일반 유저 인증을 위한 CustomUserDetailsService 생성.
+ *   @date 2020.07.11 19:01:07
+ */
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
