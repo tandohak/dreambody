@@ -10,11 +10,9 @@ import com.dreambody.resolver.response.summary.SummaryResponse;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -32,7 +30,7 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
     private final UserFoodMappingRepository userFoodMappingRepository;
 
     @Override
-    public SummaryResponse loadSummaryData(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate registrationDate) {
+    public SummaryResponse loadSummaryData() {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User tempUser = User.builder().id(userPrincipal.getId()).build();
@@ -43,17 +41,17 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
         // 2. 목표 탄단지 계산.
         // 3. 섭취 칼로리.
         // 4. 섭취 탄단지 계산.
-        List<UserFoodMapping> userFoodMappings = userFoodMappingRepository.findAllByUserIdxAndRegistrationDate(userInfo.getId(), registrationDate);
+//        List<UserFoodMapping> userFoodMappings = userFoodMappingRepository.findAllByUserIdxAndRegistrationDate(userInfo.getId(), registrationDate);
 
         Integer intakeCalorie = 0;
         Integer intakeCarbohydrate = 0;
         Integer intakeFat = 0;
         Integer intakeProtein = 0;
 
-        userFoodMappings.forEach( v -> {
-            FoodInfo foodInfo = v.getFoodInfo();
-
-        });
+//        userFoodMappings.forEach( v -> {
+//            FoodInfo foodInfo = v.getFoodInfo();
+//
+//        });
 
         return SummaryResponse.builder()
                 .goalCalorie(0)
