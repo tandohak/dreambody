@@ -85,24 +85,8 @@ public class UserInfo extends BaseTimeEntity {
         }
 
         // added by 홍윤표.
-        // 섭취칼로리 활동량 비례 계산 공식 변경.
-        switch (activity.getId().intValue()) {
-            case 1:
-                dailyIntakeCalorie = (int) (dailyIntakeCalorie * 1.2);
-                break;
-            case 2:
-                dailyIntakeCalorie = (int) (dailyIntakeCalorie * 1.3);
-                break;
-            case 3:
-                dailyIntakeCalorie = (int) (dailyIntakeCalorie * 1.5);
-                break;
-            case 4:
-                dailyIntakeCalorie = (int) (dailyIntakeCalorie * 1.7);
-                break;
-            case 5:
-                dailyIntakeCalorie = (int) (dailyIntakeCalorie * 1.9);
-                break;
-        }
+        // 섭취칼로리 활동량 비례 계산 공식 추가.
+        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
 
         return dailyIntakeCalorie;
     }
