@@ -31,4 +31,7 @@ public class FoodInfo extends BaseTimeEntity {
 
     @Column(nullable = false)
     private Float carbohydrate;
+
+    @Column(nullable = false)
+    private Float calorie;
 }
