@@ -13,15 +13,23 @@ import lombok.ToString;
 public class Row {
 
     @JsonProperty(value = "FOOD_CD")
-    private String foodCode;
+    private String code;
+
     @JsonProperty(value = "DESC_KOR")
-    private String foodName;
+    private String name;
+
     @JsonProperty(value = "NUTR_CONT1")
     private float calorie;
+
     @JsonProperty(value = "NUTR_CONT2")
     private float carbohydrate;
+
     @JsonProperty(value = "NUTR_CONT3")
     private float protein;
+
+    @JsonProperty(value = "NUTR_CONT4")
+    private float fat;
+
     @JsonProperty(value = "GROUP_NAME")
-    private String foodType;
+    private String type;
 }

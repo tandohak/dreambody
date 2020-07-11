@@ -1,5 +1,5 @@
 {
-  "userInfoWrapper": {
+  "requestUserInfo": {
     "currentWeight":50,
     "goalWeight": 70,
     "height":180,

@@ -18,7 +18,7 @@ public class FoodInfo extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String foodCode;
+    private String code;
 
     @Column(nullable = false)
     private String name;
@@ -31,4 +31,7 @@ public class FoodInfo extends BaseTimeEntity {
 
     @Column(nullable = false)
     private Float carbohydrate;
+
+    @Column(nullable = false)
+    private Float calorie;
 }

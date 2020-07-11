@@ -25,7 +25,7 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
     private final UserInfoRepository userInfoRepository;
 
     @GraphQLMutation(name = "saveUserInfo")
-    public UserInfo saveUserInfo(RequestUserInfo userInfoWrapper) {
+    public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
@@ -37,10 +37,10 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
         //    -> 명시적이지 않기 때문에 가독성이 떨어진다고 생각해용.
         //    -> 가능하면 else 대신 return으로 끝내는게 좋지 않을까 해요
         if (userInfo == null) {
-            userInfo = userInfoWrapper.toEntity();
+            userInfo = requestUserInfo.toEntity();
             userInfo.setUser(User.builder().id(userPrincipal.getId()).build());
         } else {
-            userInfo = userInfoWrapper.toEntity(userInfo);
+            userInfo = requestUserInfo.toEntity(userInfo);
         }
 
         return userInfoRepository.save(userInfo);

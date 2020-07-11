@@ -15,7 +15,8 @@
       },
       "activity": {
         "id": 1,
-        "activity": "주로 좌식 생활을 하는 사람"
+        "activity": "주로 좌식 생활을 하는 사람",
+        "volume": 1.2
       }
     }
   }
