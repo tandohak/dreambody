@@ -4,7 +4,9 @@ type Query {
     genders: [Gender]
     activities: [Activity]
     goals: [Goal]
+    summary: Summary
 }
+
 
 type Mutation {
     saveUserInfo(userInfoWrapper: UserInfoWrapper): UserInfo
@@ -56,4 +58,14 @@ type Activity {
     id: Int!
     activity: String!
     decimal: Float!
+}
+
+type Summary {
+    intakeCalorie: Int!
+    intakeCarbohydrate: Int!
+    goalCarbohydrate: Int!
+    intakeProtein: Int!
+    goalProtein: Int!
+    intakeFat: Int!
+    goalFat: Int!
 }

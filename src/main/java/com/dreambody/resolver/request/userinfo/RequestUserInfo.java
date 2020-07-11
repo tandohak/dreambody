@@ -39,7 +39,7 @@ public class RequestUserInfo {
                 .activity(Activity.builder().id(activity).build())
                 .build();
 
-        userInfo.getDailyIntakeCalorie();
+        userInfo.calculationDailyIntakeCalorie();
 
         return userInfo;
     }
@@ -77,7 +77,7 @@ public class RequestUserInfo {
             userInfo.setActivity(Activity.builder().id(activity).build());
         }
 
-        userInfo.getDailyIntakeCalorie();
+        userInfo.calculationDailyIntakeCalorie();
 
         return userInfo;
     }
