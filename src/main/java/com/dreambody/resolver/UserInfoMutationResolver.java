@@ -23,6 +23,6 @@ public class UserInfoMutationResolver implements GraphQLMutationResolver {
 
     @GraphQLMutation(name = "saveUserInfo")
     public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
-        return userInfoService.saveUserInf(requestUserInfo);
+        return userInfoService.saveUserInfo(requestUserInfo);
     }
 }

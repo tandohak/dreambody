@@ -78,8 +78,10 @@ public class UserInfo extends BaseTimeEntity {
         log.info("현재년도 : " + currentYear);
         log.info("사용자 생일 : " + userBirthYear);
 
+        // 여자
         dailyIntakeCalorie = (int) (655 + (9.6 * goalWeight) + (1.8 * height) - (4.7 * age));
 
+        // 남자
         if (1 == gender.getId()) {
            dailyIntakeCalorie = (int) (66 + (13.7 * goalWeight) + (5 * height) - (6.5 * age));
         }

@@ -10,13 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+/**
+ *   @author 홍윤표
+ *   @description 유저 인포 서비스 생성.
+ *   @date 2020.07.11 18:38:56
+ */
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserInfoService {
     private final UserInfoRepository userInfoRepository;
 
-    public UserInfo saveUserInf(RequestUserInfo requestUserInfo) {
+    public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
