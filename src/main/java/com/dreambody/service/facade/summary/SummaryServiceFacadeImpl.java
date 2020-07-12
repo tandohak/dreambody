@@ -1,15 +1,23 @@
 package com.dreambody.service.facade.summary;
 
 import com.dreambody.model.User;
+import com.dreambody.model.foodInfo.FoodInfo;
+import com.dreambody.model.foodInfo.MealType;
+import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
-import com.dreambody.resolver.response.summary.SummaryResponse;
+import com.dreambody.resolver.request.summary.RequestSummary;
+import com.dreambody.resolver.response.summary.ResponseSummary;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 홍윤표
@@ -26,38 +34,64 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
     private final UserFoodMappingRepository userFoodMappingRepository;
 
     @Override
-    public SummaryResponse loadSummaryData() {
+    public ResponseSummary loadSummaryData(RequestSummary requestSummary) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User tempUser = User.builder().id(userPrincipal.getId()).build();
         UserInfo userInfo = userInfoRepository.findByUser(tempUser);
 
-        log.info("UserInfo {}", userInfo);
-        // 1. 목표 칼로리
-        // 2. 목표 탄단지 계산.
-        // 3. 섭취 칼로리.
-        // 4. 섭취 탄단지 계산.
-//        List<UserFoodMapping> userFoodMappings = userFoodMappingRepository.findAllByUserIdxAndRegistrationDate(userInfo.getId(), registrationDate);
+        if (requestSummary.getRegistrationDate() == null) {
+            requestSummary.setRegistrationDate(LocalDate.now());
+        }
 
-        Integer intakeCalorie = 0;
-        Integer intakeCarbohydrate = 0;
-        Integer intakeFat = 0;
-        Integer intakeProtein = 0;
+        Integer goalCalorie = userInfo.calculationDailyIntakeCalorie();
+        Integer goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate();
+        Integer goalFat = userInfo.calculationDailyIntakeFat();
+        Integer goalProtein = userInfo.calculationDailyIntakeProtein();
 
-//        userFoodMappings.forEach( v -> {
-//            FoodInfo foodInfo = v.getFoodInfo();
-//
-//        });
+        List<UserFoodMapping> userFoodMappings = new ArrayList<>();
 
-        return SummaryResponse.builder()
-                .goalCalorie(0)
-                .goalCarbohydrate(0)
-                .goalFat(0)
-                .goalProtein(0)
-                .intakeCalorie(userInfo.calculationDailyIntakeCalorie())
-                .intakeCarbohydrate(0)
-                .intakeFat(0)
-                .intakeProtein(0)
+        // 식사 타입이 있을 경우.
+        if (requestSummary.getMealType() != null) {
+            MealType mealType = MealType.builder().id(requestSummary.getMealType()).build();
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType);
+
+            goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType());
+            goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType());
+            goalFat = userInfo.calculationDailyIntakeFat(requestSummary.getMealType());
+            goalProtein = userInfo.calculationDailyIntakeProtein(requestSummary.getMealType());
+        }
+
+        // 식사 타입이 없을 경우.
+        if (requestSummary.getMealType() == null) {
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDate(tempUser, requestSummary.getRegistrationDate());
+
+        }
+
+        Float intakeCalorie = 0f;
+        Float intakeCarbohydrate = 0f;
+        Float intakeFat = 0f;
+        Float intakeProtein = 0f;
+
+        for (UserFoodMapping userFoodMapping : userFoodMappings) {
+            FoodInfo foodInfo = userFoodMapping.getFoodInfo();
+            intakeCalorie += foodInfo.getCalorie() * userFoodMapping.getQuantity();
+            intakeCarbohydrate += foodInfo.getCarbohydrate() * userFoodMapping.getQuantity();
+            intakeFat += foodInfo.getFat().intValue() * userFoodMapping.getQuantity();
+            intakeProtein += foodInfo.getProtein() * userFoodMapping.getQuantity();
+        }
+
+        return ResponseSummary.builder()
+                .goalCalorie(goalCalorie)
+                .goalCarbohydrate(goalCarbohydrate)
+                .goalFat(goalFat)
+                .goalProtein(goalProtein)
+                .intakeCalorie(intakeCalorie.intValue())
+                .intakeCarbohydrate(intakeCarbohydrate.intValue())
+                .intakeFat(intakeFat.intValue())
+                .intakeProtein(intakeProtein.intValue())
                 .build();
     }
+
+
 }

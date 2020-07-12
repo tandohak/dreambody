@@ -1,6 +1,5 @@
 # 회원정보 조회
 query GetUserInfo {
-    #test
     userInfo {
         id
         currentWeight

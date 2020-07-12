@@ -1,6 +1,8 @@
 package com.dreambody.controller.foodApi.dto;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -9,27 +11,29 @@ import lombok.ToString;
  * @date : 2020.06.26
  */
 
+@Getter
+@Setter
 @ToString
 public class Row {
 
-    @JsonProperty(value = "FOOD_CD")
+    @JsonAlias(value = "FOOD_CD")
     private String code;
 
-    @JsonProperty(value = "DESC_KOR")
+    @JsonAlias(value = "DESC_KOR")
     private String name;
 
-    @JsonProperty(value = "NUTR_CONT1")
+    @JsonAlias(value = "NUTR_CONT1")
     private float calorie;
 
-    @JsonProperty(value = "NUTR_CONT2")
+    @JsonAlias(value = "NUTR_CONT2")
     private float carbohydrate;
 
-    @JsonProperty(value = "NUTR_CONT3")
+    @JsonAlias(value = "NUTR_CONT3")
     private float protein;
 
-    @JsonProperty(value = "NUTR_CONT4")
+    @JsonAlias(value = "NUTR_CONT4")
     private float fat;
 
-    @JsonProperty(value = "GROUP_NAME")
+    @JsonAlias(value = "GROUP_NAME")
     private String type;
 }

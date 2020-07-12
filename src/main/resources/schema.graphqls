@@ -4,14 +4,18 @@ type Query {
     activities: [Activity]
     goals: [Goal]
     mealTypes: [MealTypeResponse]
-    summary: Summary
     userFoodMapping(mealTypeId: Int): [UserFoodMappingResponse]
+    summary(requestSummary: RequestSummary): Summary
 }
 
 type Mutation {
-    # test
     saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
     saveUserFoodMapping(foodInfoRequest: FoodInfoRequest): Int
+}
+
+input RequestSummary {
+    registrationDate: String
+    mealType: Int
 }
 
 input UserInfoRequest {

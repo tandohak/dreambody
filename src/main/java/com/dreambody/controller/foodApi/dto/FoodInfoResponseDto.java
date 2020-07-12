@@ -10,7 +10,11 @@ import lombok.*;
  * @date : 2020.06.26
  */
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
+@Setter
 public class FoodInfoResponseDto {
 
     // @JsonProperty : 응답 json의 명을 매핑

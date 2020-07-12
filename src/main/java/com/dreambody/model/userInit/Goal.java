@@ -27,5 +27,4 @@ public class Goal extends BaseTimeEntity {
 
     @Column(nullable = false, length = 10)
     private String goal;
-
 }

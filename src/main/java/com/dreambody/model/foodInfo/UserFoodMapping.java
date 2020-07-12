@@ -40,14 +40,14 @@ public class UserFoodMapping extends BaseTimeEntity {
     private LocalDate registrationDate;
 
     @ManyToOne
-    @JoinColumn(name = "meal_type_id")
+    @JoinColumn(name = "meal_type_id", nullable = false)
     private MealType mealType;
 
     @ManyToOne
-    @JoinColumn(name = "food_info_id")
+    @JoinColumn(name = "food_info_id", nullable = false)
     private FoodInfo foodInfo;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
