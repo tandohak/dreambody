@@ -5,6 +5,7 @@ import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
+import com.dreambody.resolver.response.summary.UserFoodMappingResponse;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import com.dreambody.service.facade.nutrition.NutritionServiceFacade;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -27,13 +28,9 @@ public class UserFoodMappingDetailResolver implements GraphQLQueryResolver {
 
     private final NutritionServiceFacade nutritionServiceFacade;
 
-    @GraphQLQuery(name = "userFoodMappingDetai")
-//    public List<UserFoodMapping> getUserFoodMappingDetail(Long mealTypeId) {
-    public List<UserFoodMapping> getUserFoodMappingDetail() {
-//        UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        return nutritionServiceFacade.getUserFoodMappingDetail(User.builder().id(userPrincipal.getId()).build(), mealTypeId);
-        return nutritionServiceFacade.getUserFoodMappingDetail();
+    @GraphQLQuery(name = "userFoodMapping")
+    public List<UserFoodMappingResponse> getUserFoodMapping(Long mealTypeId) {
+        UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealTypeId);
     }
-
-
 }

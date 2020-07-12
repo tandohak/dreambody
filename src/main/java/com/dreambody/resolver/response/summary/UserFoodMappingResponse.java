@@ -5,6 +5,12 @@ import com.dreambody.model.foodInfo.FoodInfo;
 import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.time.LocalDate;
 
 /**
  * @author : 이병덕
@@ -12,14 +18,24 @@ import lombok.*;
  * @date : 2020.07.12 05:03:32
  */
 
-@Builder
+@Getter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserFoodMappingResponse {
 
-    private FoodInfo foodInfo;
+    private Long id;
+    private int quantity;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate registrationDate;
     private MealType mealType;
+    private FoodInfo foodInfo;
     private User user;
-    private UserFoodMapping userFoodMapping;
+
+    public UserFoodMappingResponse(UserFoodMapping userFoodMappinge) {
+        this.id = userFoodMappinge.getId();
+        this.quantity = userFoodMappinge.getQuantity();
+        this.registrationDate = userFoodMappinge.getRegistrationDate();
+        this.mealType = userFoodMappinge.getMealType();
+        this.foodInfo = userFoodMappinge.getFoodInfo();
+        this.user = userFoodMappinge.getUser();
+    }
 }

@@ -5,17 +5,13 @@ type Query {
     goals: [Goal]
     mealTypes: [MealTypeResponse]
     summary: Summary
-    #    userFoodMappingDetail(mealTypeId: MealTypeId): [UserFoodMapping]
-        userFoodMappingDetail: [UserFoodMapping]
+    userFoodMapping(mealTypeId: Int): [UserFoodMappingResponse]
 }
 
 type Mutation {
+    # test
     saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
     saveUserFoodMapping(foodInfoRequest: FoodInfoRequest): Int
-}
-
-input MealTypeId {
-    mealTypeId: Int!
 }
 
 input UserInfoRequest {
@@ -97,7 +93,7 @@ type MealTypeResponse {
     type: String!
 }
 
-type UserFoodMapping {
+type UserFoodMappingResponse {
     id: Int!
     quantity: Int!
     registrationDate: String!

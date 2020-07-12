@@ -16,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @author : 이병덕
@@ -62,13 +64,18 @@ public class NutritionServiceFacadeImpl implements NutritionServiceFacade {
         return userFoodMappingRepository.save(foodInfoRequest.toUserFoodMappingEntity()).getId();
     }
 
-//    @Override
-//    public List<UserFoodMapping> getUserFoodMappingDetail(User user, Long mealTypeId) {
-//        return userFoodMappingRepository.findByUserIdAndMealTypeId(user.getId(), mealTypeId);
-//    }
-
     @Override
-    public List<UserFoodMapping> getUserFoodMappingDetail() {
-        return userFoodMappingRepository.findAll();
+    public List<UserFoodMappingResponse> getUserFoodMapping(User user, Long mealTypeId) {
+        if(mealTypeId == null || "".equals(mealTypeId)) {
+            return userFoodMappingRepository.findByUserId(user.getId())
+                    .stream()
+                    .map(UserFoodMappingResponse::new)
+                    .collect(Collectors.toList());
+        }
+
+        return userFoodMappingRepository.findByUserIdAndMealTypeId(user.getId(), mealTypeId)
+                .stream()
+                .map(UserFoodMappingResponse::new)
+                .collect(Collectors.toList());
     }
 }

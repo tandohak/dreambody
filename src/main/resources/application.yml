@@ -115,11 +115,11 @@ graphql.playground:
       variables: classpath:graphQl/example/nutrition/saveUserFoodMappingVariables.json
       responses:
         - classpath:graphQl/example/nutrition/saveUserFoodMappingResponse.json
-    - name: GetUserFoodMappingDetail
-      query: classpath:graphQl/example/nutrition/getUserFoodMappingDetail.graphql
-      variables: classpath:graphQl/example/nutrition/getUserFoodMappingDetailVariables.json
+    - name: GetUserFoodMapping
+      query: classpath:graphQl/example/nutrition/getUserFoodMapping.graphql
+      variables: classpath:graphQl/example/nutrition/getUserFoodMappingVariables.json
       responses:
-        - classpath:graphQl/example/nutrition/getUserFoodMappingDetailResponse.json
+        - classpath:graphQl/example/nutrition/getUserFoodMappingResponse.json
 ---
 spring:
   profiles: local

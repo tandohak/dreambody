@@ -1,3 +1,4 @@
+# 식자타입 조회
 query GetMealTypes {
     mealTypes {
         id
