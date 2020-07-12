@@ -3,7 +3,7 @@ package com.dreambody.service;
 import com.dreambody.model.User;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.userInit.UserInfoRepository;
-import com.dreambody.resolver.request.userinfo.RequestUserInfo;
+import com.dreambody.resolver.request.userinfo.UserInfoRequest;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,18 +22,18 @@ import org.springframework.stereotype.Service;
 public class UserInfoService {
     private final UserInfoRepository userInfoRepository;
 
-    public UserInfo saveUserInfo(RequestUserInfo requestUserInfo) {
+    public UserInfo saveUserInfo(UserInfoRequest userInfoRequest) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserInfo userInfo = userInfoRepository.findByUser(User.builder().id(userPrincipal.getId()).build());
 
         if (userInfo == null) {
-            userInfo = requestUserInfo.toEntity();
+            userInfo = userInfoRequest.toEntity();
             userInfo.setUser(User.builder().id(userPrincipal.getId()).build());
 
             return userInfoRepository.save(userInfo);
         }
 
-        return userInfoRepository.save(requestUserInfo.toEntity(userInfo));
+        return userInfoRepository.save(userInfoRequest.toEntity(userInfo));
     }
 }

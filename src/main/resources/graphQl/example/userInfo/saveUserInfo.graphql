@@ -1,5 +1,6 @@
-mutation saveUserInfo($requestUserInfo: RequestUserInfo) {
-    saveUserInfo(requestUserInfo: $requestUserInfo) {
+# 회원 정보 저장
+mutation saveUserInfo($userInfoRequest: UserInfoRequest) {
+    saveUserInfo(userInfoRequest: $userInfoRequest) {
         currentWeight
         goalWeight
         height

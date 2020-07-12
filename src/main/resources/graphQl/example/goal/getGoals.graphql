@@ -1,3 +1,4 @@
+# 목표조회
 query GetGoals{
      goals{
         id

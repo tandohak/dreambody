@@ -1,7 +1,8 @@
 package com.dreambody.resolver;
 
-import com.dreambody.resolver.response.summary.SummaryResponse;
-import com.dreambody.service.facade.SummaryServiceFacade;
+import com.dreambody.service.facade.summary.SummaryServiceFacade;
+import com.dreambody.resolver.request.summary.RequestSummary;
+import com.dreambody.resolver.response.summary.ResponseSummary;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class SummaryResolver implements GraphQLQueryResolver {
     private final @Qualifier("summaryService") SummaryServiceFacade summaryService;
 
     @GraphQLQuery(name = "summary")
-    public SummaryResponse getSummary() {
-        return summaryService.loadSummaryData();
+    public ResponseSummary getSummary(RequestSummary requestSummary) {
+        return summaryService.loadSummaryData(requestSummary);
     }
 
 }

@@ -1,3 +1,4 @@
+# 회원정보 조회
 query GetUserInfo {
     userInfo {
         id
