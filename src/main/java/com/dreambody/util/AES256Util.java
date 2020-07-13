@@ -14,6 +14,11 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ *   @author 홍윤표
+ *   @description token 암복호와를 위한 클래스 생성.
+ *   @date 2020.07.11 19:02:13
+ */
 @Slf4j
 public class AES256Util {
     private String iv;

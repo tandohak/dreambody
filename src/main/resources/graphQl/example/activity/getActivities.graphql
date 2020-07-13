@@ -1,0 +1,8 @@
+# 활동성 조회
+query GetActivities {
+    activities {
+        id
+        activity
+        volume
+    }
+}

@@ -5,6 +5,12 @@ import com.dreambody.model.AuthProvider;
 
 import java.util.Map;
 
+/**
+ *   @author 홍윤표
+ *   @description Oauth2UserInfo 생성하는 Factory 클래스 생성.
+ *   @date 2020.07.11 18:54:33
+ */
+
 public class OAuth2UserInfoFactory {
 
     public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) {

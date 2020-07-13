@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ *   @author 홍윤표
+ *   @description 인증되지 않은 유저 401 error 던지기 위한 authenticationEntryPoint 생성.
+ *   @date 2020.07.11 18:58:43
+ */
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     private static final Logger logger = LoggerFactory.getLogger(RestAuthenticationEntryPoint.class);

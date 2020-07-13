@@ -1,9 +1,7 @@
 package com.dreambody.model.userInit;
 
 import com.dreambody.model.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,7 +11,8 @@ import javax.persistence.*;
  * @date : 2020.06.21
  */
 
-@Getter
+@Getter @Setter
+@AllArgsConstructor @Builder
 @NoArgsConstructor
 @Table(name = "activities", uniqueConstraints = {
         @UniqueConstraint(columnNames = "activity")
@@ -28,11 +27,5 @@ public class Activity extends BaseTimeEntity {
     private String activity;
 
     @Column(nullable = false)
-    private float decimal;
-
-    @Builder
-    public Activity (String activity, float decimal) {
-        this.activity = activity;
-        this.decimal = decimal;
-    }
+    private float volume;
 }

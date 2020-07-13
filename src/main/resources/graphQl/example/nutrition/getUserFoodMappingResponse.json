@@ -1,0 +1,84 @@
+{
+  "data": {
+    "userFoodMapping": [
+      {
+        "id": 2,
+        "quantity": 3,
+        "registrationDate": "2020-07-12",
+        "mealType": {
+          "id": 3,
+          "type": "저녁"
+        },
+        "foodInfo": {
+          "id": 2,
+          "code": "D11775",
+          "name": "수박 프로스트 R",
+          "carbohydrate": 14.6,
+          "calorie": 161.6,
+          "fat": 0,
+          "protein": 0
+        },
+        "User": {
+          "id": 1,
+          "name": "이병덕",
+          "email": "lbd4946@gmail.com",
+          "emailVerified": false,
+          "provider": "google",
+          "providerId": "103109523919025483480"
+        }
+      },
+      {
+        "id": 3,
+        "quantity": 2,
+        "registrationDate": "2020-07-12",
+        "mealType": {
+          "id": 3,
+          "type": "저녁"
+        },
+        "foodInfo": {
+          "id": 3,
+          "code": "AC2223",
+          "name": "바나나 R",
+          "carbohydrate": 14.6,
+          "calorie": 161.6,
+          "fat": 0,
+          "protein": 0
+        },
+        "User": {
+          "id": 1,
+          "name": "이병덕",
+          "email": "lbd4946@gmail.com",
+          "emailVerified": false,
+          "provider": "google",
+          "providerId": "103109523919025483480"
+        }
+      },
+      {
+        "id": 4,
+        "quantity": 2,
+        "registrationDate": "2020-07-12",
+        "mealType": {
+          "id": 3,
+          "type": "저녁"
+        },
+        "foodInfo": {
+          "id": 3,
+          "code": "AC2223",
+          "name": "바나나 R",
+          "carbohydrate": 14.6,
+          "calorie": 161.6,
+          "fat": 0,
+          "protein": 0
+        },
+        "User": {
+          "id": 1,
+          "name": "이병덕",
+          "email": "lbd4946@gmail.com",
+          "emailVerified": false,
+          "provider": "google",
+          "providerId": "103109523919025483480"
+        }
+      }
+    ]
+  }
+}

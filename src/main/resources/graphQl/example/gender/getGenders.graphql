@@ -1,0 +1,7 @@
+# 성별조회
+query GetGenders {
+    genders {
+        id
+        gender
+    }
+}

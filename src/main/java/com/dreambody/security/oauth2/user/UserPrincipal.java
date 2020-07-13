@@ -11,7 +11,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ *   @author 홍윤표
+ *   @description Oauth 인증정보 저장하는 UserPrincipal 클래스 생성.
+ *   @date 2020.07.11 18:53:39
+ */
 public class UserPrincipal implements OAuth2User, UserDetails {
     private Long id;
     private String email;

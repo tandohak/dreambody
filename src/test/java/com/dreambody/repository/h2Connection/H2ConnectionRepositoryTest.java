@@ -20,25 +20,25 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
  *   @date : 2020.06.15
  */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class H2ConnectionRepositoryTest {
 
-    @Autowired
-    private H2ConnectionRepository h2ConnectionRepository;
-
-    private String name = "이병덕";
-
-    @Before
-    public void setUp() {
-        H2Connection h2Connection = H2Connection.builder().name(name).build();
-        h2ConnectionRepository.save(h2Connection);
-    }
-
-    @Test
-    public void H2DB에서_모든_값을_가져온다() {
-        List<H2Connection> h2Connections = h2ConnectionRepository.findAll();
-
-        assertThat(h2Connections.get(0).getName()).isEqualTo(name);
-    }
+//    @Autowired
+//    private H2ConnectionRepository h2ConnectionRepository;
+//
+//    private String name = "이병덕";
+//
+//    @Before
+//    public void setUp() {
+//        H2Connection h2Connection = H2Connection.builder().name(name).build();
+//        h2ConnectionRepository.save(h2Connection);
+//    }
+//
+//    @Test
+//    public void H2DB에서_모든_값을_가져온다() {
+//        List<H2Connection> h2Connections = h2ConnectionRepository.findAll();
+//
+//        assertThat(h2Connections.get(0).getName()).isEqualTo(name);
+//    }
 }

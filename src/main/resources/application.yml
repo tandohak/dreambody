@@ -1,0 +1,161 @@
+
+# 스프링부트 기본 설정파일
+# JPA 스프링부트 기본 설정파일
+## jpa가 생성한 SQL 콘솔에 출력
+spring:
+  profiles:
+    active: local
+#    active: docker
+  # OAuth2 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 927211755646-v5iiqsf4rtfbavlpta099q3vphe6p51l.apps.googleusercontent.com
+            client-secret: rpzkQWmqV4NFsLbQiC9Jix1e
+            scope:
+              - email
+              - profile
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+
+# JWT Secret 키 추가
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+    # Token Payload 내용 암호화를 위한 시크릿 키
+    payloadSecret: DREAMBODYKEYSIZEONLY16BYTE
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:8080/oauth2/redirect
+      - http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+
+
+
+### OAUTH TEST
+### URI : http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:8080/oauth2/redirect
+### URI : http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/authorize/google?redirect_uri=http://ec2-3-34-204-14.ap-northeast-2.compute.amazonaws.com/oauth2/redirect
+
+### GraphQl
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true
+#    cors:
+#      allowed-origins: http://some.domain.com
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+#    exception-handlers-enabled: true
+#    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+
+graphql.playground:
+  mapping: /playground
+  endpoint: /graphql
+  subscriptionsEndpoint: /subscriptions
+  staticPath.base: my-playground-resources-folder
+  enabled: true
+  pageTitle: Playground
+  cdn:
+    enabled: true
+    version: 1.7.16
+  settings:
+    editor.cursorShape: line
+    editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+    editor.fontSize: 14
+    editor.reuseHeaders: true
+    editor.theme: dark
+    general.betaUpdates: false
+    prettier.printWidth: 80
+    prettier.tabWidth: 2
+    prettier.useTabs: false
+    request.credentials: omit
+    schema.polling.enable: true
+    schema.polling.endpointFilter: "*localhost*"
+    schema.polling.interval: 2000
+    schema.disableComments: true
+    tracing.hideTracingResponse: true
+  headers:
+    Authorization: "Bearer "
+  tabs:
+    - name: SaveUserInfo
+      query: classpath:graphQl/example/userInfo/saveUserInfo.graphql
+      variables: classpath:graphQl/example/userInfo/saveUserInfoVariables.json
+      responses:
+        - classpath:graphQl/example/userInfo/saveUserInfoResponse.json
+    - name: GetUserInfo
+      query: classpath:graphQl/example/userInfo/getUserInfo.graphql
+      variables: classpath:graphQl/example/userInfo/getUserInfoVariables.json
+      responses:
+        - classpath:graphQl/example/userInfo/getUserInfoResponse.json
+    - name: GetGenders
+      query: classpath:graphQl/example/gender/getGenders.graphql
+      variables: classpath:graphQl/example/gender/getGendersVariables.json
+      responses:
+        - classpath:graphQl/example/gender/getGendersResponse.json
+    - name: GetActivities
+      query: classpath:graphQl/example/activity/getActivities.graphql
+      variables: classpath:graphQl/example/activity/getActivitiesVariables.json
+      responses:
+        - classpath:graphQl/example/activity/getActivitiesResponse.json
+    - name: GetGoals
+      query: classpath:graphQl/example/goal/getGoals.graphql
+      variables: classpath:graphQl/example/goal/getGoalsVariables.json
+      responses:
+        - classpath:graphQl/example/goal/getGoalsResponse.json
+    - name: GetMealTypes
+      query: classpath:graphQl/example/foodInfo/getMealTypes.graphql
+      variables: classpath:graphQl/example/foodInfo/getMealTypesVariables.json
+      responses:
+        - classpath:graphQl/example/foodInfo/getMealTypesResponse.json
+    - name: SaveUserFoodMapping
+      query: classpath:graphQl/example/nutrition/saveUserFoodMapping.graphql
+      variables: classpath:graphQl/example/nutrition/saveUserFoodMappingVariables.json
+      responses:
+        - classpath:graphQl/example/nutrition/saveUserFoodMappingResponse.json
+    - name: GetUserFoodMapping
+      query: classpath:graphQl/example/nutrition/getUserFoodMapping.graphql
+      variables: classpath:graphQl/example/nutrition/getUserFoodMappingVariables.json
+      responses:
+        - classpath:graphQl/example/nutrition/getUserFoodMappingResponse.json
+    - name: GetSummary
+      query: classpath:graphQl/example/summary/getSummary.graphql
+      variables: classpath:graphQl/example/summary/getSummaryVariables.json
+      responses:
+        - classpath:graphQl/example/summary/getSummaryResponse.json
+---
+spring:
+  profiles: local
+
+  ################################RDS로 바로 연동하여 사용하기 때문에 주석, 나중에 로컬, 운영환경 나누어서 .yml파일 관리 하면 됨.#####################################################################
+  jpa:
+    show_sql: true
+    ## SQL을 콘솔에서 보기 좋게 정리
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
+        dialect: org.hibernate.dialect.H2Dialect
+    ## ddl 설정
+    #        ddl-auto: update
+    generate-ddl: true
+
+  ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
+  h2:
+    console:
+      enabled: true
+  ### DataSource Setting
+  datasource:
+    #### C:\Users\[사용자계정]\dreambody\h2_dreambody.mv.db로 접근 -> h2_dreambody.mv.db는 파일 만들면 됨
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
+    username: dreambody
+    password: dreambody
+#####################################################################################################
+
+---
+# 운영 DB관리 방법을 아직 안정해서, git hub에 올리지만 않고, docker로 이미지화 한다.

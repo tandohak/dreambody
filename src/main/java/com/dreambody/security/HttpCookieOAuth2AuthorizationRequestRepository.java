@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *   @author 홍윤표
+ *   @description Oauth2 Google 인증을 위한 HttpCookie Request repository 생성.
+ *   @date 2020.07.11 18:56:36
+ */
+
 @Component
 public class HttpCookieOAuth2AuthorizationRequestRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
     public static final String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_auth_request";

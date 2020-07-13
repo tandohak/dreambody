@@ -15,6 +15,11 @@ import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+ *   @author 홍윤표
+ *   @description 토큰 공급을 위한 TokenProvider 생성.
+ *   @date 2020.07.11 19:00:36
+ */
 @Slf4j
 @Service
 public class TokenProvider {

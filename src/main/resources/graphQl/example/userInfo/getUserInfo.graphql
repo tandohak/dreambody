@@ -1,0 +1,31 @@
+# 회원정보 조회
+query GetUserInfo {
+    userInfo {
+        id
+        currentWeight
+        dailyIntakeCalorie
+        dateOfBirth
+        goalWeight
+        height
+        gender {
+            id
+            gender
+        }
+        goal {
+            id
+            goal
+        }
+        activity {
+            id
+            activity
+        }
+        user {
+            id
+            name
+            email
+            emailVerified
+            provider
+            providerId
+        }
+    }
+}

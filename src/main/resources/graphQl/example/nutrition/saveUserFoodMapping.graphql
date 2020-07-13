@@ -1,0 +1,4 @@
+# 식사타입에 따른 식사정보 저장
+mutation SaveUserFoodMapping($foodInfoRequest: FoodInfoRequest) {
+    saveUserFoodMapping(foodInfoRequest: $foodInfoRequest)
+}
