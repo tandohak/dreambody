@@ -6,6 +6,7 @@ type Query {
     mealTypes: [MealTypeResponse]
     userFoodMapping(mealTypeId: Int): [UserFoodMappingResponse]
     summary(requestSummary: RequestSummary): Summary
+    foodInfo(foodName: String): [FoodInfoResponseDto]
 }
 
 type Mutation {
@@ -119,4 +120,28 @@ type FoodInfo {
     fat: Float!
     carbohydrate: Float!
     calorie: Float!
+}
+
+type FoodInfoResponseDto {
+    i2790: I2790
+}
+
+type I2790 {
+    result: Result
+    row: [Row]
+}
+
+type Result {
+    msg: String
+    code: String
+}
+
+type Row {
+    code: String
+    name: String
+    calorie: Float
+    carbohydrate: Float
+    protein: Float
+    fat: Float
+    type: String
 }

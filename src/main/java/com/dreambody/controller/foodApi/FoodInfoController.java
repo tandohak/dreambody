@@ -2,6 +2,7 @@ package com.dreambody.controller.foodApi;
 
 import com.dreambody.controller.foodApi.dto.FoodInfoResponseDto;
 import com.dreambody.service.foodApi.FoodInfoService;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,8 @@ public class FoodInfoController {
 
     private final FoodInfoService foodInfoService;
 
-    @GetMapping("/foodInfo")
+//    @GetMapping("/foodInfo")
+    @GraphQLQuery(name = "foodInfo")
     public ResponseEntity<FoodInfoResponseDto> findFoodApi(@RequestParam("name") String foodName) {
         return foodInfoService.findFoodApi(foodName);
     }
