@@ -1,6 +1,5 @@
 package com.dreambody.model;
 
-import com.dreambody.model.userInit.UserInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -26,11 +25,11 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 40)
     private String name;
 
     @Email
-    @Column(nullable = false)
+    @Column(nullable = false, length = 40)
     private String email;
 
     @Column(nullable = false)

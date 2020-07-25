@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -28,18 +30,26 @@ public class UserInfo extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Min(value = 1)
+    @Max(value = 999)
     @Column(nullable = false)
     private int currentWeight;
 
+    @Min(value = 1)
+    @Max(value = 999)
     @Column(nullable = false)
     private int goalWeight;
 
+    @Min(value = 1)
+    @Max(value = 999)
     @Column(nullable = false)
     private int height;
 
     @Column(nullable = false)
     private String dateOfBirth;
 
+    @Min(value = 1)
+    @Max(value = 99999)
     @Column(nullable = false)
     private int dailyIntakeCalorie;
 

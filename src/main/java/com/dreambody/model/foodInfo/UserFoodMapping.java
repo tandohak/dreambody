@@ -31,8 +31,8 @@ public class UserFoodMapping extends BaseTimeEntity {
     private Long id;
 
     @Min(value = 1)
-    @Max(value = 100)
-    @Column(nullable = false, length = 100)
+    @Max(value = 999)
+    @Column(nullable = false)
     private int quantity;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
