@@ -48,7 +48,7 @@ public class UserInfo extends BaseTimeEntity {
     @Column(nullable = false)
     private String dateOfBirth;
 
-    @Min(value = 1)
+    @Min(value = 0)
     @Max(value = 99999)
     @Column(nullable = false)
     private int dailyIntakeCalorie;
