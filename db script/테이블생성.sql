@@ -69,8 +69,8 @@ create table user_infos (
                             create_date timestamp,
                             modified_date timestamp,
                             current_weight integer not null check (current_weight<=999 AND current_weight>=1),
-                            daily_intake_calorie integer not null check (daily_intake_calorie<=99999 AND daily_intake_calorie>=1),
-                            date_of_birth date not null,
+                            daily_intake_calorie integer not null check (daily_intake_calorie<=99999 AND daily_intake_calorie>=0),
+                            date_of_birth varchar(255) not null,
                             goal_weight integer not null check (goal_weight<=999 AND goal_weight>=1),
                             height integer not null check (height<=999 AND height>=1),
                             registration_date date,
@@ -89,6 +89,7 @@ create table users (
                        email varchar(40) not null,
                        email_verified boolean not null,
                        name varchar(40) not null,
+                       password varchar(255),
                        provider varchar(255) not null,
                        provider_id varchar(255),
                        primary key (id)
