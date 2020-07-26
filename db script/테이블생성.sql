@@ -85,6 +85,7 @@ create table users (
                        id bigint auto_increment,
                        create_date timestamp,
                        modified_date timestamp,
+                       password varchar(255),
                        email varchar(40) not null,
                        email_verified boolean not null,
                        name varchar(40) not null,
