@@ -133,15 +133,15 @@ spring:
   jpa:
     show_sql: true
     ## SQL을 콘솔에서 보기 좋게 정리
-    hibernate:
-      ddl-auto: update
+#    hibernate:
+#      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
         ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
         dialect: org.hibernate.dialect.H2Dialect
     ## ddl 설정
-    #        ddl-auto: update
+        ddl-auto: update
     generate-ddl: true
 
   ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
@@ -155,6 +155,7 @@ spring:
     url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
     username: dreambody
     password: dreambody
+#    url: jdbc:h2:mem:testdb
 #####################################################################################################
 
 ---

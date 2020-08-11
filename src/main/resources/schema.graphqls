@@ -1,6 +1,5 @@
 type Query {
     userInfo: UserInfo
-    genders: [Gender]
     activities: [Activity]
     goals: [Goal]
     mealTypes: [MealTypeResponse]
@@ -23,7 +22,7 @@ input UserInfoRequest {
     goalWeight: Int
     height: Int
     dateOfBirth: String
-    gender: Int
+    genderType: EGender
     goal: Int
     activity: Int
 }
@@ -59,15 +58,15 @@ type UserInfo {
     dateOfBirth: String!
     dailyIntakeCalorie: Int!
     user: User
-    gender: Gender
+    genderType: EGender
     goal: Goal
     activity: Activity
     registrationDate: String!
 }
 
-type Gender {
-    id: Int!
-    gender: String!
+enum EGender {
+    MALE
+    FEMALE
 }
 
 type Goal {

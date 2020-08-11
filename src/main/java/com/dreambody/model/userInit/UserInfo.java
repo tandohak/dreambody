@@ -1,5 +1,6 @@
 package com.dreambody.model.userInit;
 
+import com.dreambody.dbenum.EGender;
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
 import lombok.*;
@@ -57,9 +58,9 @@ public class UserInfo extends BaseTimeEntity {
     @Column(unique = true)
     private LocalDate registrationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id")
-    private Gender gender;
+    @Enumerated(value = EnumType.STRING)
+    @Column(length = 6)
+    private EGender genderType;
 
     @ManyToOne
     @JoinColumn(name = "goal_id")
@@ -84,18 +85,22 @@ public class UserInfo extends BaseTimeEntity {
         log.info("나이 : " + age);
         log.info("현재년도 : " + currentYear);
         log.info("사용자 생일 : " + userBirthYear);
+        log.info("성별 : " + genderType.name());
 
-        // 여자
-        dailyIntakeCalorie = (int) (655 + (9.6 * goalWeight) + (1.8 * height) - (4.7 * age));
-
-        // 남자
-        if (1 == gender.getId()) {
-           dailyIntakeCalorie = (int) (66 + (13.7 * goalWeight) + (5 * height) - (6.5 * age));
+        if("MALE".equals(genderType.name())) {
+            log.info("MALE");
+            dailyIntakeCalorie = (int) (66 + (13.7 * goalWeight) + (5 * height) - (6.5 * age));
+        } else if("FEMALE".equals(genderType.name())) {
+            log.info("FEMALE");
+            dailyIntakeCalorie = (int) (655 + (9.6 * goalWeight) + (1.8 * height) - (4.7 * age));
         }
 
+        log.info("dailyIntakeCalorie : " + dailyIntakeCalorie);
         // added by 홍윤표.
         // 섭취칼로리 활동량 비례 계산 공식 추가.
-        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
+//        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
+//
+//        log.info("activity : " + activity.getVolume());
 
         return dailyIntakeCalorie;
     }

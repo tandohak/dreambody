@@ -1,9 +1,7 @@
 package com.dreambody.resolver;
 
 import com.dreambody.model.userInit.Activity;
-import com.dreambody.model.userInit.Gender;
 import com.dreambody.repository.userInit.ActivityRepository;
-import com.dreambody.repository.userInit.GenderRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;

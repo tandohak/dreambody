@@ -7,10 +7,7 @@
       "dateOfBirth": "1990-12-21",
       "goalWeight": 70,
       "height": 180,
-      "gender": {
-        "id": 1,
-        "gender": "남"
-      },
+      "genderType": "MALE",
       "goal": {
         "id": 1,
         "goal": "체중감량"

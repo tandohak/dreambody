@@ -1,10 +1,11 @@
 package com.dreambody.resolver.request.userinfo;
 
+import com.dreambody.dbenum.EGender;
 import com.dreambody.model.userInit.Activity;
-import com.dreambody.model.userInit.Gender;
 import com.dreambody.model.userInit.Goal;
 import com.dreambody.model.userInit.UserInfo;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,8 @@ import java.time.LocalDate;
  *   @description UserInfo 저장을 위한 request 클래스 생성.
  *   @date 2020.06.23 01:11:08
  */
+
+@Slf4j
 @NoArgsConstructor @AllArgsConstructor
 @Builder @Getter @Setter @ToString
 public class UserInfoRequest {
@@ -24,7 +27,7 @@ public class UserInfoRequest {
 
     private String dateOfBirth;
 
-    private Long gender;
+    private EGender genderType;
 
     private Long goal;
 
@@ -36,11 +39,12 @@ public class UserInfoRequest {
                 .dateOfBirth(dateOfBirth)
                 .goalWeight(goalWeight)
                 .height(height)
-                .gender(Gender.builder().id(gender).build())
+                .genderType(genderType)
                 .goal(Goal.builder().id(goal).build())
                 .activity(Activity.builder().id(activity).build())
                 .build();
 
+        log.info("UserInfoRequest genderType : " + genderType);
         userInfo.setRegistrationDate(LocalDate.now());
         userInfo.calculationDailyIntakeCalorie();
 
@@ -68,8 +72,8 @@ public class UserInfoRequest {
             userInfo.setDateOfBirth(dateOfBirth);
         }
 
-        if (gender != null) {
-            userInfo.setGender(Gender.builder().id(gender).build());
+        if (genderType != null) {
+            userInfo.setGenderType(EGender.MALE);
         }
 
         if (goal != null) {
