@@ -1,5 +1,6 @@
 package com.dreambody.model.foodInfo;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
 import lombok.AllArgsConstructor;
@@ -39,9 +40,8 @@ public class UserFoodMapping extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDate registrationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "meal_type_id", nullable = false)
-    private MealType mealType;
+    @Enumerated(value = EnumType.STRING)
+    private EMealType mealType1;
 
     @ManyToOne
     @JoinColumn(name = "food_info_id", nullable = false)

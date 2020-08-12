@@ -1,9 +1,6 @@
 type Query {
     userInfo: UserInfo
-    activities: [Activity]
-    goals: [Goal]
-    mealTypes: [MealTypeResponse]
-    userFoodMapping(mealTypeId: Int): [UserFoodMappingResponse]
+    userFoodMapping(mealType1: EMealType): [UserFoodMappingResponse]
     summary(requestSummary: RequestSummary): Summary
 }
 
@@ -14,7 +11,7 @@ type Mutation {
 
 input RequestSummary {
     registrationDate: String
-    mealType: Int
+    mealType1: EMealType
 }
 
 input UserInfoRequest {
@@ -23,8 +20,8 @@ input UserInfoRequest {
     height: Int
     dateOfBirth: String
     genderType: EGender
-    goal: Int
-    activity: Int
+    goalType: EGoal
+    activityType: EActivity
 }
 
 input FoodInfoRequest {
@@ -37,7 +34,7 @@ input FoodInfoRequest {
     registrationDate: String
     foodInfo: Int
     user: Int
-    mealType: Int
+    mealType1: EMealType
     quantity: Int
 }
 
@@ -59,25 +56,9 @@ type UserInfo {
     dailyIntakeCalorie: Int!
     user: User
     genderType: EGender
-    goal: Goal
-    activity: Activity
+    goalType: EGoal
+    activityType: EActivity
     registrationDate: String!
-}
-
-enum EGender {
-    MALE
-    FEMALE
-}
-
-type Goal {
-    id: Int!
-    goal: String!
-}
-
-type Activity {
-    id: Int!
-    activity: String!
-    volume: Float!
 }
 
 type Summary {
@@ -91,23 +72,13 @@ type Summary {
     goalFat: Int!
 }
 
-type MealTypeResponse {
-    id: Int!
-    type: String!
-}
-
 type UserFoodMappingResponse {
     id: Int!
     quantity: Int!
     registrationDate: String!
-    mealType: MealType!
+    mealType1: EMealType!
     foodInfo: FoodInfo!
     User: User!
-}
-
-type MealType {
-    id: Int!
-    type: String!
 }
 
 type FoodInfo {
@@ -118,4 +89,30 @@ type FoodInfo {
     fat: Float!
     carbohydrate: Float!
     calorie: Float!
+}
+
+enum EGender {
+    MALE
+    FEMALE
+}
+
+enum EGoal {
+    WEIGHT_LOSS
+    WEIGHT_GAIN
+    WEIGHT_RETENTION
+}
+
+enum EActivity {
+    IN_ACTIVE
+    LITTLE_ACTIVE
+    NORMAL_ACTIVE
+    FAIRLY_ACTIVE
+    VERY_ACTIVE
+}
+
+enum EMealType {
+    BREAKFAST
+    LUNCH
+    DINNER
+    DESSERT
 }

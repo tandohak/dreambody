@@ -6,7 +6,7 @@
     "fat": 3.2,
     "carbohydrate": 8.0,
     "calorie": 65.0,
-    "mealType": 1,
+    "mealType1": "BREAKFAST",
     "quantity": 3,
     "registrationDate": "2020-01-01"
   }

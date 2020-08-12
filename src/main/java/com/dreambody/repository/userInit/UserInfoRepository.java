@@ -1,7 +1,6 @@
 package com.dreambody.repository.userInit;
 
 import com.dreambody.model.User;
-import com.dreambody.model.userInit.Activity;
 import com.dreambody.model.userInit.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 

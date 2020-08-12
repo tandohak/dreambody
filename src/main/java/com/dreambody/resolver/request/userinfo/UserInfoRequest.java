@@ -1,8 +1,8 @@
 package com.dreambody.resolver.request.userinfo;
 
+import com.dreambody.dbenum.EActivity;
 import com.dreambody.dbenum.EGender;
-import com.dreambody.model.userInit.Activity;
-import com.dreambody.model.userInit.Goal;
+import com.dreambody.dbenum.EGoal;
 import com.dreambody.model.userInit.UserInfo;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +29,9 @@ public class UserInfoRequest {
 
     private EGender genderType;
 
-    private Long goal;
+    private EGoal goalType;
 
-    private Long activity;
+    private EActivity activityType;
 
     public UserInfo toEntity() {
         UserInfo userInfo = UserInfo.builder()
@@ -40,8 +40,8 @@ public class UserInfoRequest {
                 .goalWeight(goalWeight)
                 .height(height)
                 .genderType(genderType)
-                .goal(Goal.builder().id(goal).build())
-                .activity(Activity.builder().id(activity).build())
+                .goalType(goalType)
+                .activityType(activityType)
                 .build();
 
         log.info("UserInfoRequest genderType : " + genderType);
@@ -73,15 +73,15 @@ public class UserInfoRequest {
         }
 
         if (genderType != null) {
-            userInfo.setGenderType(EGender.MALE);
+            userInfo.setGenderType(genderType);
         }
 
-        if (goal != null) {
-            userInfo.setGoal(Goal.builder().id(goal).build());
+        if (goalType != null) {
+            userInfo.setGoalType(goalType);
         }
 
-        if (activity != null) {
-            userInfo.setActivity(Activity.builder().id(activity).build());
+        if (activityType != null) {
+            userInfo.setActivityType(activityType);
         }
 
         userInfo.setRegistrationDate(LocalDate.now());

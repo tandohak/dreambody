@@ -1,6 +1,9 @@
 package com.dreambody.model.userInit;
 
+import com.dreambody.dbenum.EActivity;
 import com.dreambody.dbenum.EGender;
+import com.dreambody.dbenum.EGoal;
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
 import lombok.*;
@@ -59,16 +62,13 @@ public class UserInfo extends BaseTimeEntity {
     private LocalDate registrationDate;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(length = 6)
     private EGender genderType;
 
-    @ManyToOne
-    @JoinColumn(name = "goal_id")
-    private Goal goal;
+    @Enumerated(value = EnumType.STRING)
+    private EGoal goalType;
 
-    @ManyToOne
-    @JoinColumn(name = "activity_id")
-    private Activity activity;
+    @Enumerated(value = EnumType.STRING)
+    private EActivity activityType;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -98,9 +98,9 @@ public class UserInfo extends BaseTimeEntity {
         log.info("dailyIntakeCalorie : " + dailyIntakeCalorie);
         // added by 홍윤표.
         // 섭취칼로리 활동량 비례 계산 공식 추가.
-//        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
-//
-//        log.info("activity : " + activity.getVolume());
+        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activityType.getVolume());
+
+        log.info("activityType : " + activityType.getVolume());
 
         return dailyIntakeCalorie;
     }
@@ -121,26 +121,26 @@ public class UserInfo extends BaseTimeEntity {
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:20)
-    public Integer calculationDailyIntakeCalorie(Long mealType) {
+    public Integer calculationDailyIntakeCalorie(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeCalorie() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:21)
-    public Integer calculationDailyIntakeCarbohydrate(Long mealType) {
+    public Integer calculationDailyIntakeCarbohydrate(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeCarbohydrate() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:22)
-    public Integer calculationDailyIntakeFat(Long mealType) {
+    public Integer calculationDailyIntakeFat(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeFat() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:24)
-    public Integer calculationDailyIntakeProtein(Long mealType) {
+    public Integer calculationDailyIntakeProtein(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeProtein() * getRatioByMealType(mealType));
     }
 
-    private double getRatioByMealType(Long mealType) {
-        return mealType != 4 ? 0.3 : 0.1;
+    private double getRatioByMealType(EMealType mealType) {
+        return !mealType.name().equals("DESSERT") ? 0.3 : 0.1;
     }
 }

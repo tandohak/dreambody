@@ -1,8 +1,8 @@
 package com.dreambody.resolver.request.nutrition;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import lombok.*;
 
@@ -20,7 +20,7 @@ import lombok.*;
 @ToString
 public class UserFoodMappingRequest {
 
-    private Long mealType;
+    private EMealType mealType1;
     private Long foodInfo;
     private Long user;
     private int quantity;
@@ -28,7 +28,7 @@ public class UserFoodMappingRequest {
 
     public UserFoodMapping toEntity() {
         return UserFoodMapping.builder()
-                        .mealType(MealType.builder().id(mealType).build())
+                        .mealType1(mealType1)
                         .foodInfo(FoodInfo.builder().id(foodInfo).build())
                         .user(User.builder().id(user).build())
                         .quantity(quantity)

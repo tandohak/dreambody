@@ -1,5 +1,6 @@
 package com.dreambody.service.facade.nutrition;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
 import com.dreambody.model.foodInfo.UserFoodMapping;
@@ -65,15 +66,15 @@ public class NutritionServiceFacadeImpl implements NutritionServiceFacade {
     }
 
     @Override
-    public List<UserFoodMappingResponse> getUserFoodMapping(User user, Long mealTypeId) {
-        if(mealTypeId == null || "".equals(mealTypeId)) {
+    public List<UserFoodMappingResponse> getUserFoodMapping(User user, EMealType mealType1) {
+        if(mealType1 == null) {
             return userFoodMappingRepository.findByUserId(user.getId())
                     .stream()
                     .map(UserFoodMappingResponse::new)
                     .collect(Collectors.toList());
         }
 
-        return userFoodMappingRepository.findByUserIdAndMealTypeId(user.getId(), mealTypeId)
+        return userFoodMappingRepository.findByUserIdAndMealType1(user.getId(), mealType1)
                 .stream()
                 .map(UserFoodMappingResponse::new)
                 .collect(Collectors.toList());

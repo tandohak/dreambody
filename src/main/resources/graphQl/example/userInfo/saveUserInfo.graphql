@@ -6,13 +6,7 @@ mutation saveUserInfo($userInfoRequest: UserInfoRequest) {
         height
         dateOfBirth
         genderType
-        goal {
-            id
-            goal
-        }
-        activity {
-            id
-            activity
-        }
+        goalType
+        activityType
     }
 }

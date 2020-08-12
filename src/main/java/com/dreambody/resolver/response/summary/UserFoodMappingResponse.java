@@ -1,8 +1,8 @@
 package com.dreambody.resolver.response.summary;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,7 +26,7 @@ public class UserFoodMappingResponse {
     private int quantity;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
-    private MealType mealType;
+    private EMealType mealType1;
     private FoodInfo foodInfo;
     private User user;
 
@@ -34,7 +34,7 @@ public class UserFoodMappingResponse {
         this.id = userFoodMappinge.getId();
         this.quantity = userFoodMappinge.getQuantity();
         this.registrationDate = userFoodMappinge.getRegistrationDate();
-        this.mealType = userFoodMappinge.getMealType();
+        this.mealType1 = userFoodMappinge.getMealType1();
         this.foodInfo = userFoodMappinge.getFoodInfo();
         this.user = userFoodMappinge.getUser();
     }

@@ -8,14 +8,8 @@
       "goalWeight": 70,
       "height": 180,
       "genderType": "MALE",
-      "goal": {
-        "id": 1,
-        "goal": "체중감량"
-      },
-      "activity": {
-        "id": 1,
-        "activity": "주로 좌식 생활을 하는 사람"
-      },
+      "goalType": "WEIGHT_RETENTION",
+      "activityType": "VERY_ACTIVE",
       "user": {
         "id": 1,
         "name": "youn,pyo hong",
