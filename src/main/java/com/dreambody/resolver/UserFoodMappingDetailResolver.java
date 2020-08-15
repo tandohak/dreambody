@@ -1,5 +1,6 @@
 package com.dreambody.resolver;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
@@ -29,8 +30,8 @@ public class UserFoodMappingDetailResolver implements GraphQLQueryResolver {
     private final NutritionServiceFacade nutritionServiceFacade;
 
     @GraphQLQuery(name = "userFoodMapping")
-    public List<UserFoodMappingResponse> getUserFoodMapping(Long mealTypeId) {
+    public List<UserFoodMappingResponse> getUserFoodMapping(EMealType mealType1) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealTypeId);
+        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealType1);
     }
 }

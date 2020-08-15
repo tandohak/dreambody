@@ -1,11 +1,11 @@
 {
   "userInfoRequest": {
-    "currentWeight":50,
-    "goalWeight": 70,
-    "height":180,
-    "dateOfBirth": "1990-12-21",
-    "gender": 1,
-    "goal": 1,
-    "activity": 1
+    "currentWeight":52,
+    "goalWeight": 50,
+    "height":164,
+    "dateOfBirth": "1992-01-13",
+    "genderType": "FEMALE",
+    "goalType": "WEIGHT_RETENTION",
+    "activityType": "VERY_ACTIVE"
   }
 }

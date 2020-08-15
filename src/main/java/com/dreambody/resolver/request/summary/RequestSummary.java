@@ -1,5 +1,6 @@
 package com.dreambody.resolver.request.summary;
 
+import com.dreambody.dbenum.EMealType;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,5 +15,5 @@ public class RequestSummary {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
 
-    private Long mealType;
+    private EMealType mealType1;
 }

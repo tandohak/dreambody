@@ -24,5 +24,4 @@ public class SummaryResolver implements GraphQLQueryResolver {
     public ResponseSummary getSummary(RequestSummary requestSummary) {
         return summaryService.loadSummaryData(requestSummary);
     }
-
 }

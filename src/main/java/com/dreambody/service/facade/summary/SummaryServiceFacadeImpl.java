@@ -1,8 +1,8 @@
 package com.dreambody.service.facade.summary;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
@@ -52,18 +52,18 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
         List<UserFoodMapping> userFoodMappings = new ArrayList<>();
 
         // 식사 타입이 있을 경우.
-        if (requestSummary.getMealType() != null) {
-            MealType mealType = MealType.builder().id(requestSummary.getMealType()).build();
-            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType);
+        if (requestSummary.getMealType1() != null) {
+            EMealType mealType1 = requestSummary.getMealType1();
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType1(tempUser, requestSummary.getRegistrationDate(), mealType1);
 
-            goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType());
-            goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType());
-            goalFat = userInfo.calculationDailyIntakeFat(requestSummary.getMealType());
-            goalProtein = userInfo.calculationDailyIntakeProtein(requestSummary.getMealType());
+            goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType1());
+            goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType1());
+            goalFat = userInfo.calculationDailyIntakeFat(requestSummary.getMealType1());
+            goalProtein = userInfo.calculationDailyIntakeProtein(requestSummary.getMealType1());
         }
 
         // 식사 타입이 없을 경우.
-        if (requestSummary.getMealType() == null) {
+        if (requestSummary.getMealType1() == null) {
             userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDate(tempUser, requestSummary.getRegistrationDate());
 
         }

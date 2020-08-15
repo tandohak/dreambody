@@ -7,18 +7,9 @@ query GetUserInfo {
         dateOfBirth
         goalWeight
         height
-        gender {
-            id
-            gender
-        }
-        goal {
-            id
-            goal
-        }
-        activity {
-            id
-            activity
-        }
+        genderType
+        goalType
+        activityType
         user {
             id
             name
