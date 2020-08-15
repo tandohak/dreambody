@@ -6,7 +6,7 @@ type Query {
 
 type Mutation {
     saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
-    saveUserFoodMapping(foodInfoRequest: FoodInfoRequest): Int
+    saveUserFoodMapping(foodInfoRequest: [FoodInfoRequest]): FoodInfoSumResponse
 }
 
 input RequestSummary {
@@ -36,6 +36,13 @@ input FoodInfoRequest {
     user: Int
     mealType: EMealType
     quantity: Int
+}
+
+type FoodInfoSumResponse {
+    protein: Float
+    fat: Float
+    carbohydrate: Float
+    calorie: Float
 }
 
 type User {

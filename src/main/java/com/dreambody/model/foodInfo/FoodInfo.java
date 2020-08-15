@@ -1,6 +1,7 @@
 package com.dreambody.model.foodInfo;
 
 import com.dreambody.model.BaseTimeEntity;
+import com.dreambody.resolver.request.nutrition.FoodInfoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
