@@ -6,6 +6,7 @@ import com.dreambody.dbenum.EGoal;
 import com.dreambody.model.userInit.UserInfo;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -25,7 +26,8 @@ public class UserInfoRequest {
 
     private Integer height;
 
-    private String dateOfBirth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
     private EGender genderType;
 

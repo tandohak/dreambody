@@ -1,14 +1,18 @@
 {
   "data": {
     "summary": {
-      "goalCalorie": 2076,
-      "intakeCalorie": 600,
-      "goalFat": 92,
-      "intakeFat": 130,
-      "goalProtein": 155,
-      "intakeProtein": 60,
-      "goalCarbohydrate": 207,
-      "intakeCarbohydrate": 240
+      "goal": {
+        "calorie": 2466,
+        "carbohydrate": 246,
+        "protein": 184,
+        "fat": 2466
+      },
+      "intake": {
+        "calorie": 0,
+        "carbohydrate": 0,
+        "protein": 0,
+        "fat": 0
+      }
     }
   }
 }

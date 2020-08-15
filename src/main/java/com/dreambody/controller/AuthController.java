@@ -2,11 +2,10 @@ package com.dreambody.controller;
 
 import com.dreambody.exception.BadRequestException;
 import com.dreambody.model.AuthProvider;
+import com.dreambody.model.BlackList;
 import com.dreambody.model.User;
-import com.dreambody.payload.ApiResponse;
-import com.dreambody.payload.AuthResponse;
-import com.dreambody.payload.LoginRequest;
-import com.dreambody.payload.SignUpRequest;
+import com.dreambody.payload.*;
+import com.dreambody.repository.BlackListRepository;
 import com.dreambody.repository.UserRepository;
 import com.dreambody.security.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +15,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -37,6 +35,8 @@ public class AuthController {
 
     private final TokenProvider tokenProvider;
 
+    private final BlackListRepository blackListRepository;
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -51,6 +51,13 @@ public class AuthController {
 
         String token = tokenProvider.createToken(authentication);
         return ResponseEntity.ok(new AuthResponse(token));
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?>  logoutUser(HttpServletRequest request) {
+        String bearerToken = TokenProvider.getJwtFromRequest(request);
+        blackListRepository.save(BlackList.builder().token(bearerToken).build());
+        return ResponseEntity.ok(new LogoutResponse(true, bearerToken));
     }
 
     @PostMapping("/signup")

@@ -10,7 +10,9 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,5 +89,13 @@ public class TokenProvider {
             logger.error("JWT claims string is empty.");
         }
         return false;
+    }
+
+    public static  String getJwtFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }
