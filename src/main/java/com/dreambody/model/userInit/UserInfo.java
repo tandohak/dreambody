@@ -50,7 +50,8 @@ public class UserInfo extends BaseTimeEntity {
     private int height;
 
     @Column(nullable = false)
-    private String dateOfBirth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
     @Min(value = 0)
     @Max(value = 99999)
@@ -77,7 +78,7 @@ public class UserInfo extends BaseTimeEntity {
     // 일일 칼로리 계산
     public int calculationDailyIntakeCalorie() {
         int currentYear = LocalDateTime.now().getYear();
-        int userBirthYear = Integer.parseInt(dateOfBirth.substring(0,4));
+        int userBirthYear = dateOfBirth.getYear();
 
         int age = currentYear - userBirthYear;
 
