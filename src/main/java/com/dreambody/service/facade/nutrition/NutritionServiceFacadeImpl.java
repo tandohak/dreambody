@@ -9,6 +9,7 @@ import com.dreambody.repository.foodInfo.FoodInfoRepository;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
 import com.dreambody.resolver.request.nutrition.FoodInfoRequest;
+import com.dreambody.resolver.response.summary.FoodInfoSumResponse;
 import com.dreambody.resolver.response.summary.UserFoodMappingResponse;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -36,25 +37,29 @@ public class NutritionServiceFacadeImpl implements NutritionServiceFacade {
     private final UserInfoRepository userInfoRepository;
 
     @Override
-    public Long saveUserFoodMapping(FoodInfoRequest foodInfoRequest) {
-        return getFoodInfo(foodInfoRequest);
+    public FoodInfoSumResponse saveUserFoodMapping(List<FoodInfoRequest> foodInfoRequests) {
+        return getFoodInfo(foodInfoRequests);
     }
 
-    private Long getFoodInfo(FoodInfoRequest foodInfoRequest) {
-        FoodInfo foodInfo = foodInfoRepository.findByCode(foodInfoRequest.getCode());
+    private FoodInfoSumResponse getFoodInfo(List<FoodInfoRequest> foodInfoRequests) {
         Long id = null;
 
-        if(foodInfo == null) {
-            id = foodInfoRepository.save(foodInfoRequest.toFoodInfoEntity()).getId();
-            return generateUserFoodMappingRequest(foodInfoRequest, id);
+        for (FoodInfoRequest foodInfoRequest : foodInfoRequests) {
+            FoodInfo foodInfo = foodInfoRepository.findByCode(foodInfoRequest.getCode());
+
+            if (foodInfo == null) {
+                id = foodInfoRepository.save(foodInfoRequest.toFoodInfoEntity()).getId();
+            } else {
+                id = foodInfo.getId();
+            }
+
+            generateUserFoodMappingRequest(foodInfoRequest, id);
         }
 
-        id = foodInfo.getId();
-
-        return generateUserFoodMappingRequest(foodInfoRequest, id);
+        return FoodInfoSumResponse.builder().foodInfoRequests(foodInfoRequests).build();
     }
 
-    private Long generateUserFoodMappingRequest(FoodInfoRequest foodInfoRequest, Long foodInfoId) {
+    private void generateUserFoodMappingRequest(FoodInfoRequest foodInfoRequest, Long foodInfoId) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User tempUser = User.builder().id(userPrincipal.getId()).build();
@@ -62,19 +67,19 @@ public class NutritionServiceFacadeImpl implements NutritionServiceFacade {
 
         foodInfoRequest.generateUserFoodMappingRequest(foodInfoId, userInfo.getId());
 
-        return userFoodMappingRepository.save(foodInfoRequest.toUserFoodMappingEntity()).getId();
+        userFoodMappingRepository.save(foodInfoRequest.toUserFoodMappingEntity());
     }
 
     @Override
-    public List<UserFoodMappingResponse> getUserFoodMapping(User user, EMealType mealType1) {
-        if(mealType1 == null) {
+    public List<UserFoodMappingResponse> getUserFoodMapping(User user, EMealType mealType) {
+        if(mealType == null) {
             return userFoodMappingRepository.findByUserId(user.getId())
                     .stream()
                     .map(UserFoodMappingResponse::new)
                     .collect(Collectors.toList());
         }
 
-        return userFoodMappingRepository.findByUserIdAndMealType1(user.getId(), mealType1)
+        return userFoodMappingRepository.findByUserIdAndMealType(user.getId(), mealType)
                 .stream()
                 .map(UserFoodMappingResponse::new)
                 .collect(Collectors.toList());

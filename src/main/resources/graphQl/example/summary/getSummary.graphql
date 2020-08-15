@@ -1,3 +1,5 @@
+#  registrationDate 가 null 일 경우 오늘 날짜의 summary를 가져온다.
+#  mealType 이 null 일 경우 모든 데이터를 가져온다.
 query Summary($requestSummary: RequestSummary) {
     summary(requestSummary: $requestSummary) {
         goal {

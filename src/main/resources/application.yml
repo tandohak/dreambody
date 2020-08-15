@@ -121,8 +121,7 @@ spring:
         ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
         dialect: org.hibernate.dialect.H2Dialect
     ## ddl 설정
-        ddl-auto: update
-    generate-ddl: false
+    generate-ddl: true
 
 
   ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
