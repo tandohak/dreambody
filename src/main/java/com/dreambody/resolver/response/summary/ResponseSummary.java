@@ -14,12 +14,6 @@ import lombok.*;
 @Data
 @ToString
 public class ResponseSummary {
-    private Integer intakeCalorie;
-    private Integer goalCalorie;
-    private Integer intakeCarbohydrate;
-    private Integer goalCarbohydrate;
-    private Integer intakeProtein;
-    private Integer goalProtein;
-    private Integer intakeFat;
-    private Integer goalFat;
+    private ResponseGoal goal;
+    private ResponseIntake intake;
 }

@@ -1,12 +1,16 @@
 query Summary($requestSummary: RequestSummary) {
     summary(requestSummary: $requestSummary) {
-        goalCalorie
-        intakeCalorie
-        goalFat
-        intakeFat
-        goalProtein
-        intakeProtein
-        goalCarbohydrate
-        intakeCarbohydrate
+        goal {
+            calorie
+            carbohydrate
+            protein
+            fat
+        }
+        intake {
+            calorie
+            carbohydrate
+            protein
+            fat
+        }
     }
 }

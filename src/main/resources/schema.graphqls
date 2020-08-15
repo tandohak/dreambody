@@ -64,15 +64,24 @@ type UserInfo {
 }
 
 type Summary {
-    intakeCalorie: Int!
-    goalCalorie: Int!
-    intakeCarbohydrate: Int!
-    goalCarbohydrate: Int!
-    intakeProtein: Int!
-    goalProtein: Int!
-    intakeFat: Int!
-    goalFat: Int!
+    goal: Goal
+    intake: Intake
 }
+
+type Goal {
+    calorie: Int!
+    carbohydrate: Int!
+    protein: Int!
+    fat: Int!
+}
+
+type Intake {
+    calorie: Int!
+    carbohydrate: Int!
+    protein: Int!
+    fat: Int!
+}
+
 
 type UserFoodMappingResponse {
     id: Int!

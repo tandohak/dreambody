@@ -15,5 +15,5 @@ public class RequestSummary {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
 
-    private EMealType mealType1;
+    private EMealType mealType;
 }
