@@ -1,11 +1,11 @@
 # 식사타입에 등록한 음식에 관련한 회원정보
 # mealTypeId(식사타입)이 있으면 해당 식사타입의 내역만 조회, 없으면 모든 식사타입의 내역을 조회
-query GetUserFoodMapping($mealType1: EMealType) {
-    userFoodMapping(mealType1: $mealType1) {
+query GetUserFoodMapping($mealType: EMealType) {
+    userFoodMapping(mealType: $mealType) {
         id
         quantity
         registrationDate
-        mealType1
+        mealType
         foodInfo {
             id
             code

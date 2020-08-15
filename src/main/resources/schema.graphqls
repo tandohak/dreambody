@@ -1,6 +1,6 @@
 type Query {
     userInfo: UserInfo
-    userFoodMapping(mealType1: EMealType): [UserFoodMappingResponse]
+    userFoodMapping(mealType: EMealType): [UserFoodMappingResponse]
     summary(requestSummary: RequestSummary): Summary
 }
 
@@ -34,7 +34,7 @@ input FoodInfoRequest {
     registrationDate: String
     foodInfo: Int
     user: Int
-    mealType1: EMealType
+    mealType: EMealType
     quantity: Int
 }
 
@@ -87,7 +87,7 @@ type UserFoodMappingResponse {
     id: Int!
     quantity: Int!
     registrationDate: String!
-    mealType1: EMealType!
+    mealType: EMealType!
     foodInfo: FoodInfo!
     User: User!
 }

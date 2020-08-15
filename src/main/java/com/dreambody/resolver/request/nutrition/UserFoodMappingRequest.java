@@ -20,7 +20,7 @@ import lombok.*;
 @ToString
 public class UserFoodMappingRequest {
 
-    private EMealType mealType1;
+    private EMealType mealType;
     private Long foodInfo;
     private Long user;
     private int quantity;
@@ -28,7 +28,7 @@ public class UserFoodMappingRequest {
 
     public UserFoodMapping toEntity() {
         return UserFoodMapping.builder()
-                        .mealType1(mealType1)
+                        .mealType(mealType)
                         .foodInfo(FoodInfo.builder().id(foodInfo).build())
                         .user(User.builder().id(user).build())
                         .quantity(quantity)

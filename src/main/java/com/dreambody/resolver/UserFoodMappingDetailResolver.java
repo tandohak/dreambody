@@ -30,8 +30,8 @@ public class UserFoodMappingDetailResolver implements GraphQLQueryResolver {
     private final NutritionServiceFacade nutritionServiceFacade;
 
     @GraphQLQuery(name = "userFoodMapping")
-    public List<UserFoodMappingResponse> getUserFoodMapping(EMealType mealType1) {
+    public List<UserFoodMappingResponse> getUserFoodMapping(EMealType mealType) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealType1);
+        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealType);
     }
 }

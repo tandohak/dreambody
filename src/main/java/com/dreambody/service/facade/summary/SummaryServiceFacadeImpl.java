@@ -56,7 +56,7 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
         // 식사 타입이 있을 경우.
         if (requestSummary.getMealType() != null) {
             EMealType mealType1 = requestSummary.getMealType();
-            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType1(tempUser, requestSummary.getRegistrationDate(), mealType1);
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType1);
 
             goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType());
             goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType());

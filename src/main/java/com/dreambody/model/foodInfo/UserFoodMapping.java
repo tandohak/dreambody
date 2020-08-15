@@ -41,7 +41,7 @@ public class UserFoodMapping extends BaseTimeEntity {
     private LocalDate registrationDate;
 
     @Enumerated(value = EnumType.STRING)
-    private EMealType mealType1;
+    private EMealType mealType;
 
     @ManyToOne
     @JoinColumn(name = "food_info_id", nullable = false)
