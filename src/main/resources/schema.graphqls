@@ -45,6 +45,8 @@ type User {
     emailVerified: Boolean!
     provider: String!
     providerId: String!
+    answeredQuestion: Boolean!
+    profileImage: String
 }
 
 type UserInfo {

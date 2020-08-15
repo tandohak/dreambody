@@ -113,8 +113,8 @@ spring:
   jpa:
     show_sql: true
     ## SQL을 콘솔에서 보기 좋게 정리
-#    hibernate:
-#      ddl-auto: create
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -122,7 +122,8 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
     ## ddl 설정
         ddl-auto: update
-    generate-ddl: true
+    generate-ddl: false
+
 
   ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
   h2:
