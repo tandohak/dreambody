@@ -135,7 +135,6 @@ spring:
     url: jdbc:h2:tcp://localhost/~/dreambody/h2_dreambody
     username: dreambody
     password: dreambody
-#    url: jdbc:h2:mem:testdb
 #####################################################################################################
 
 ---
