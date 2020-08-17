@@ -5,10 +5,7 @@
         "id": 2,
         "quantity": 3,
         "registrationDate": "2020-07-12",
-        "mealType": {
-          "id": 3,
-          "type": "저녁"
-        },
+        "mealType": "DINNER",
         "foodInfo": {
           "id": 2,
           "code": "D11775",
@@ -31,10 +28,7 @@
         "id": 3,
         "quantity": 2,
         "registrationDate": "2020-07-12",
-        "mealType": {
-          "id": 3,
-          "type": "저녁"
-        },
+        "mealType": "BREAKFAST",
         "foodInfo": {
           "id": 3,
           "code": "AC2223",
@@ -57,10 +51,7 @@
         "id": 4,
         "quantity": 2,
         "registrationDate": "2020-07-12",
-        "mealType": {
-          "id": 3,
-          "type": "저녁"
-        },
+        "mealType": "BREAKFAST",
         "foodInfo": {
           "id": 3,
           "code": "AC2223",

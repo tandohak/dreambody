@@ -1,5 +1,10 @@
 {
   "data": {
-    "id": 1
+    "saveUserFoodMapping": {
+      "carbohydrate": 14.6,
+      "calorie": 161.6,
+      "fat": 0,
+      "protein": 0
+    }
   }
 }

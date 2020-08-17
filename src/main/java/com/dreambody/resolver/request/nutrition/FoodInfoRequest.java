@@ -1,8 +1,8 @@
 package com.dreambody.resolver.request.nutrition;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,13 +35,14 @@ public class FoodInfoRequest {
     // UserFoodMapping
     private Long foodInfo;
     private Long user;
-    private Long mealType;     // 프론트
+    private EMealType mealType;     // 프론트
     private int quantity;      // 프론트
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate; // 프론트
 
     public FoodInfo toFoodInfoEntity() {
         return FoodInfo.builder()
+                        .registrationDate(registrationDate)
                         .code(code)
                         .name(name)
                         .protein(protein)
@@ -54,8 +55,8 @@ public class FoodInfoRequest {
     public UserFoodMapping toUserFoodMappingEntity() {
         return UserFoodMapping.builder()
                 .quantity(quantity)
-                .registrationDate(LocalDate.now())
-                .mealType(MealType.builder().id(mealType).build())
+                .registrationDate(registrationDate)
+                .mealType(mealType)
                 .foodInfo(FoodInfo.builder().id(foodInfo).build())
                 .user(User.builder().id(user).build())
                 .build();

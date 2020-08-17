@@ -1,12 +1,16 @@
 package com.dreambody.resolver;
 
+import com.dreambody.model.foodInfo.FoodInfo;
 import com.dreambody.resolver.request.nutrition.FoodInfoRequest;
+import com.dreambody.resolver.response.summary.FoodInfoSumResponse;
 import com.dreambody.service.facade.nutrition.NutritionServiceFacade;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author : 이병덕
@@ -21,7 +25,7 @@ public class UserFoodMappingMutationResolver implements GraphQLMutationResolver 
     private final NutritionServiceFacade nutritionServiceFacade;
 
     @GraphQLMutation(name = "saveUserFoodMapping")
-    public Long saveUserFoodMapping(FoodInfoRequest foodInfoRequest) {
+    public FoodInfoSumResponse saveUserFoodMapping(List<FoodInfoRequest> foodInfoRequest) {
         return nutritionServiceFacade.saveUserFoodMapping(foodInfoRequest);
     }
 }

@@ -44,5 +44,10 @@ public class User extends BaseTimeEntity {
 
     private String providerId;
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean answeredQuestion;
+
+    private String profileImage;
+
     // Getters and Setters (Omitted for brevity)
 }

@@ -90,26 +90,6 @@ graphql.playground:
       variables: classpath:graphQl/example/userInfo/getUserInfoVariables.json
       responses:
         - classpath:graphQl/example/userInfo/getUserInfoResponse.json
-    - name: GetGenders
-      query: classpath:graphQl/example/gender/getGenders.graphql
-      variables: classpath:graphQl/example/gender/getGendersVariables.json
-      responses:
-        - classpath:graphQl/example/gender/getGendersResponse.json
-    - name: GetActivities
-      query: classpath:graphQl/example/activity/getActivities.graphql
-      variables: classpath:graphQl/example/activity/getActivitiesVariables.json
-      responses:
-        - classpath:graphQl/example/activity/getActivitiesResponse.json
-    - name: GetGoals
-      query: classpath:graphQl/example/goal/getGoals.graphql
-      variables: classpath:graphQl/example/goal/getGoalsVariables.json
-      responses:
-        - classpath:graphQl/example/goal/getGoalsResponse.json
-    - name: GetMealTypes
-      query: classpath:graphQl/example/foodInfo/getMealTypes.graphql
-      variables: classpath:graphQl/example/foodInfo/getMealTypesVariables.json
-      responses:
-        - classpath:graphQl/example/foodInfo/getMealTypesResponse.json
     - name: SaveUserFoodMapping
       query: classpath:graphQl/example/nutrition/saveUserFoodMapping.graphql
       variables: classpath:graphQl/example/nutrition/saveUserFoodMappingVariables.json
@@ -141,8 +121,8 @@ spring:
         ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
         dialect: org.hibernate.dialect.H2Dialect
     ## ddl 설정
-    #        ddl-auto: update
     generate-ddl: true
+
 
   ## 로컬에서만 사용할 테스트용 H2 웹 콘솔 활성화
   h2:

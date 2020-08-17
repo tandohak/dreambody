@@ -1,21 +1,17 @@
 type Query {
     userInfo: UserInfo
-    genders: [Gender]
-    activities: [Activity]
-    goals: [Goal]
-    mealTypes: [MealTypeResponse]
-    userFoodMapping(mealTypeId: Int): [UserFoodMappingResponse]
+    userFoodMapping(mealType: EMealType): [UserFoodMappingResponse]
     summary(requestSummary: RequestSummary): Summary
 }
 
 type Mutation {
     saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
-    saveUserFoodMapping(foodInfoRequest: FoodInfoRequest): Int
+    saveUserFoodMapping(foodInfoRequest: [FoodInfoRequest]): FoodInfoSumResponse
 }
 
 input RequestSummary {
     registrationDate: String
-    mealType: Int
+    mealType: EMealType
 }
 
 input UserInfoRequest {
@@ -23,9 +19,9 @@ input UserInfoRequest {
     goalWeight: Int
     height: Int
     dateOfBirth: String
-    gender: Int
-    goal: Int
-    activity: Int
+    genderType: EGender
+    goalType: EGoal
+    activityType: EActivity
 }
 
 input FoodInfoRequest {
@@ -38,8 +34,15 @@ input FoodInfoRequest {
     registrationDate: String
     foodInfo: Int
     user: Int
-    mealType: Int
+    mealType: EMealType
     quantity: Int
+}
+
+type FoodInfoSumResponse {
+    protein: Float
+    fat: Float
+    carbohydrate: Float
+    calorie: Float
 }
 
 type User {
@@ -49,6 +52,8 @@ type User {
     emailVerified: Boolean!
     provider: String!
     providerId: String!
+    answeredQuestion: Boolean!
+    profileImage: String
 }
 
 type UserInfo {
@@ -59,56 +64,39 @@ type UserInfo {
     dateOfBirth: String!
     dailyIntakeCalorie: Int!
     user: User
-    gender: Gender
-    goal: Goal
-    activity: Activity
+    genderType: EGender
+    goalType: EGoal
+    activityType: EActivity
     registrationDate: String!
 }
 
-type Gender {
-    id: Int!
-    gender: String!
+type Summary {
+    goal: Goal
+    intake: Intake
 }
 
 type Goal {
-    id: Int!
-    goal: String!
+    calorie: Int!
+    carbohydrate: Int!
+    protein: Int!
+    fat: Int!
 }
 
-type Activity {
-    id: Int!
-    activity: String!
-    volume: Float!
+type Intake {
+    calorie: Int!
+    carbohydrate: Int!
+    protein: Int!
+    fat: Int!
 }
 
-type Summary {
-    intakeCalorie: Int!
-    goalCalorie: Int!
-    intakeCarbohydrate: Int!
-    goalCarbohydrate: Int!
-    intakeProtein: Int!
-    goalProtein: Int!
-    intakeFat: Int!
-    goalFat: Int!
-}
-
-type MealTypeResponse {
-    id: Int!
-    type: String!
-}
 
 type UserFoodMappingResponse {
     id: Int!
     quantity: Int!
     registrationDate: String!
-    mealType: MealType!
+    mealType: EMealType!
     foodInfo: FoodInfo!
     User: User!
-}
-
-type MealType {
-    id: Int!
-    type: String!
 }
 
 type FoodInfo {
@@ -119,4 +107,30 @@ type FoodInfo {
     fat: Float!
     carbohydrate: Float!
     calorie: Float!
+}
+
+enum EGender {
+    MALE
+    FEMALE
+}
+
+enum EGoal {
+    WEIGHT_LOSS
+    WEIGHT_GAIN
+    WEIGHT_RETENTION
+}
+
+enum EActivity {
+    IN_ACTIVE
+    LITTLE_ACTIVE
+    NORMAL_ACTIVE
+    FAIRLY_ACTIVE
+    VERY_ACTIVE
+}
+
+enum EMealType {
+    BREAKFAST
+    LUNCH
+    DINNER
+    DESSERT
 }

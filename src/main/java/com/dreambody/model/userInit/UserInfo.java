@@ -1,5 +1,9 @@
 package com.dreambody.model.userInit;
 
+import com.dreambody.dbenum.EActivity;
+import com.dreambody.dbenum.EGender;
+import com.dreambody.dbenum.EGoal;
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.BaseTimeEntity;
 import com.dreambody.model.User;
 import lombok.*;
@@ -46,7 +50,8 @@ public class UserInfo extends BaseTimeEntity {
     private int height;
 
     @Column(nullable = false)
-    private String dateOfBirth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
     @Min(value = 0)
     @Max(value = 99999)
@@ -57,17 +62,14 @@ public class UserInfo extends BaseTimeEntity {
     @Column(unique = true)
     private LocalDate registrationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id")
-    private Gender gender;
+    @Enumerated(value = EnumType.STRING)
+    private EGender genderType;
 
-    @ManyToOne
-    @JoinColumn(name = "goal_id")
-    private Goal goal;
+    @Enumerated(value = EnumType.STRING)
+    private EGoal goalType;
 
-    @ManyToOne
-    @JoinColumn(name = "activity_id")
-    private Activity activity;
+    @Enumerated(value = EnumType.STRING)
+    private EActivity activityType;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -76,7 +78,7 @@ public class UserInfo extends BaseTimeEntity {
     // 일일 칼로리 계산
     public int calculationDailyIntakeCalorie() {
         int currentYear = LocalDateTime.now().getYear();
-        int userBirthYear = Integer.parseInt(dateOfBirth.substring(0,4));
+        int userBirthYear = dateOfBirth.getYear();
 
         int age = currentYear - userBirthYear;
 
@@ -84,18 +86,22 @@ public class UserInfo extends BaseTimeEntity {
         log.info("나이 : " + age);
         log.info("현재년도 : " + currentYear);
         log.info("사용자 생일 : " + userBirthYear);
+        log.info("성별 : " + genderType.name());
 
-        // 여자
-        dailyIntakeCalorie = (int) (655 + (9.6 * goalWeight) + (1.8 * height) - (4.7 * age));
-
-        // 남자
-        if (1 == gender.getId()) {
-           dailyIntakeCalorie = (int) (66 + (13.7 * goalWeight) + (5 * height) - (6.5 * age));
+        if("MALE".equals(genderType.name())) {
+            log.info("MALE");
+            dailyIntakeCalorie = (int) (66 + (13.7 * goalWeight) + (5 * height) - (6.5 * age));
+        } else if("FEMALE".equals(genderType.name())) {
+            log.info("FEMALE");
+            dailyIntakeCalorie = (int) (655 + (9.6 * goalWeight) + (1.8 * height) - (4.7 * age));
         }
 
+        log.info("dailyIntakeCalorie : " + dailyIntakeCalorie);
         // added by 홍윤표.
         // 섭취칼로리 활동량 비례 계산 공식 추가.
-        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activity.getVolume());
+        dailyIntakeCalorie = (int) (dailyIntakeCalorie * activityType.getVolume());
+
+        log.info("activityType : " + activityType.getVolume());
 
         return dailyIntakeCalorie;
     }
@@ -116,26 +122,26 @@ public class UserInfo extends BaseTimeEntity {
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:20)
-    public Integer calculationDailyIntakeCalorie(Long mealType) {
+    public Integer calculationDailyIntakeCalorie(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeCalorie() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:21)
-    public Integer calculationDailyIntakeCarbohydrate(Long mealType) {
+    public Integer calculationDailyIntakeCarbohydrate(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeCarbohydrate() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:22)
-    public Integer calculationDailyIntakeFat(Long mealType) {
+    public Integer calculationDailyIntakeFat(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeFat() * getRatioByMealType(mealType));
     }
 
     // added by 홍윤표. 아침/점심/저녁/ 간식 식사 기준량 (2020.07.11 22:10:24)
-    public Integer calculationDailyIntakeProtein(Long mealType) {
+    public Integer calculationDailyIntakeProtein(EMealType mealType) {
         return (int) Math.round(calculationDailyIntakeProtein() * getRatioByMealType(mealType));
     }
 
-    private double getRatioByMealType(Long mealType) {
-        return mealType != 4 ? 0.3 : 0.1;
+    private double getRatioByMealType(EMealType mealType) {
+        return !mealType.name().equals("DESSERT") ? 0.3 : 0.1;
     }
 }

@@ -1,13 +1,15 @@
 package com.dreambody.service.facade.summary;
 
+import com.dreambody.dbenum.EMealType;
 import com.dreambody.model.User;
 import com.dreambody.model.foodInfo.FoodInfo;
-import com.dreambody.model.foodInfo.MealType;
 import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
 import com.dreambody.resolver.request.summary.RequestSummary;
+import com.dreambody.resolver.response.summary.ResponseGoal;
+import com.dreambody.resolver.response.summary.ResponseIntake;
 import com.dreambody.resolver.response.summary.ResponseSummary;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -53,8 +55,8 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
 
         // 식사 타입이 있을 경우.
         if (requestSummary.getMealType() != null) {
-            MealType mealType = MealType.builder().id(requestSummary.getMealType()).build();
-            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType);
+            EMealType mealType1 = requestSummary.getMealType();
+            userFoodMappings = userFoodMappingRepository.findAllByUserAndRegistrationDateAndMealType(tempUser, requestSummary.getRegistrationDate(), mealType1);
 
             goalCalorie = userInfo.calculationDailyIntakeCalorie(requestSummary.getMealType());
             goalCarbohydrate = userInfo.calculationDailyIntakeCarbohydrate(requestSummary.getMealType());
@@ -81,15 +83,24 @@ public class SummaryServiceFacadeImpl implements SummaryServiceFacade {
             intakeProtein += foodInfo.getProtein() * userFoodMapping.getQuantity();
         }
 
+        ResponseGoal goal = ResponseGoal.builder()
+                .calorie(goalCalorie)
+                .carbohydrate(goalCarbohydrate)
+                .fat(goalFat)
+                .protein(goalProtein)
+                .build();
+
+
+        ResponseIntake intake = ResponseIntake.builder()
+                .calorie(intakeCalorie.intValue())
+                .carbohydrate(intakeCarbohydrate.intValue())
+                .fat(intakeFat.intValue())
+                .protein(intakeProtein.intValue())
+                .build();
+
         return ResponseSummary.builder()
-                .goalCalorie(goalCalorie)
-                .goalCarbohydrate(goalCarbohydrate)
-                .goalFat(goalFat)
-                .goalProtein(goalProtein)
-                .intakeCalorie(intakeCalorie.intValue())
-                .intakeCarbohydrate(intakeCarbohydrate.intValue())
-                .intakeFat(intakeFat.intValue())
-                .intakeProtein(intakeProtein.intValue())
+                .goal(goal)
+                .intake(intake)
                 .build();
     }
 

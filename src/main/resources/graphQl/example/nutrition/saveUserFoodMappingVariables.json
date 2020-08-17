@@ -1,13 +1,26 @@
 {
-  "foodInfoRequest": {
-    "code": "P01601",
-    "name": "후렌치파이 사과",
-    "protein": 1.0,
-    "fat": 3.2,
-    "carbohydrate": 8.0,
-    "calorie": 65.0,
-    "mealType": 1,
-    "quantity": 3,
-    "registrationDate": "2020-01-01"
-  }
+  "foodInfoRequest": [
+    {
+      "code": "P01601",
+      "name": "후렌치파이 사과",
+      "protein": 1.0,
+      "fat": 3.2,
+      "carbohydrate": 8.0,
+      "calorie": 65.0,
+      "mealType": "BREAKFAST",
+      "quantity": 3,
+      "registrationDate": "2020-01-01"
+    },
+    {
+      "code": "P01602",
+      "name": "후렌치파이 딸기",
+      "protein": 1.0,
+      "fat": 3.2,
+      "carbohydrate": 8.0,
+      "calorie": 65.0,
+      "mealType": "DINNER",
+      "quantity": 1,
+      "registrationDate": "2020-01-01"
+    }
+  ]
 }
