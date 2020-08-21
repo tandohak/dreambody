@@ -71,15 +71,15 @@ public class NutritionServiceFacadeImpl implements NutritionServiceFacade {
     }
 
     @Override
-    public List<UserFoodMappingResponse> getUserFoodMapping(User user, EMealType mealType) {
-        if(mealType == null) {
-            return userFoodMappingRepository.findByUserId(user.getId())
+    public List<UserFoodMappingResponse> getUserFoodMapping(User user, FoodInfoRequest foodInfoRequest) {
+        if(foodInfoRequest.getMealType() == null) {
+            return userFoodMappingRepository.findByUserIdAndRegistrationDate(user.getId(), foodInfoRequest.getRegistrationDate())
                     .stream()
                     .map(UserFoodMappingResponse::new)
                     .collect(Collectors.toList());
         }
 
-        return userFoodMappingRepository.findByUserIdAndMealType(user.getId(), mealType)
+        return userFoodMappingRepository.findByUserIdAndMealTypeAndRegistrationDate(user.getId(), foodInfoRequest.getMealType(), foodInfoRequest.getRegistrationDate())
                 .stream()
                 .map(UserFoodMappingResponse::new)
                 .collect(Collectors.toList());

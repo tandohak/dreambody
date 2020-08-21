@@ -1,0 +1,6 @@
+query GetWaterInfo($waterInfoRequest: WaterInfoRequest) {
+    waterInfo(waterInfoRequest: $waterInfoRequest) {
+        registrationDate
+        amountWater
+    }
+}

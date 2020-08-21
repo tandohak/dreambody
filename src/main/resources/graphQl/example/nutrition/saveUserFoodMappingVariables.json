@@ -9,7 +9,7 @@
       "calorie": 65.0,
       "mealType": "BREAKFAST",
       "quantity": 3,
-      "registrationDate": "2020-01-01"
+      "registrationDate": "2020-02-01"
     },
     {
       "code": "P01602",
@@ -20,7 +20,7 @@
       "calorie": 65.0,
       "mealType": "DINNER",
       "quantity": 1,
-      "registrationDate": "2020-01-01"
+      "registrationDate": "2020-02-01"
     }
   ]
 }

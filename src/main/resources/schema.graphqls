@@ -1,12 +1,19 @@
 type Query {
     userInfo: UserInfo
-    userFoodMapping(mealType: EMealType): [UserFoodMappingResponse]
+    userFoodMapping(foodInfoRequest: FoodInfoRequest): [UserFoodMappingResponse]
     summary(requestSummary: RequestSummary): Summary
+    waterInfo(waterInfoRequest: WaterInfoRequest): WaterInfo
 }
 
 type Mutation {
     saveUserInfo(userInfoRequest: UserInfoRequest): UserInfo
     saveUserFoodMapping(foodInfoRequest: [FoodInfoRequest]): FoodInfoSumResponse
+    saveWaterInfo(waterInfoRequest: WaterInfoRequest) : WaterInfo
+}
+
+input WaterInfoRequest {
+    registrationDate: String
+    amountWater: Int
 }
 
 input RequestSummary {
@@ -36,6 +43,13 @@ input FoodInfoRequest {
     user: Int
     mealType: EMealType
     quantity: Int
+}
+
+type WaterInfo {
+    id: Int!
+    registrationDate: String!
+    amountWater: Int!
+    user: User!
 }
 
 type FoodInfoSumResponse {

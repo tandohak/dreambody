@@ -72,6 +72,16 @@ create table users (
                        primary key (id)
 ) engine = innodb default  character set = utf8 comment = '소셜 로그 정보';
 
+create table water_info (
+                            id bigint auto_increment,
+                            create_date timestamp,
+                            modified_date timestamp,
+                            amount_water integer not null,
+                            registration_date date not null,
+                            user_id bigint not null,
+                            primary key (id)
+) engine = innodb default  character set = utf8 comment = '물 정보';
+
 alter table food_info
     add constraint UK_code unique (code);
 
@@ -87,7 +97,7 @@ alter table user_food_mapping
             references food_info(id);
 
 alter table user_food_mapping
-    add constraint userIdUserFoodMapping
+    add constraint FK_userId_user_food_mapping
         foreign key (user_id)
             references users(id);
 
@@ -95,3 +105,8 @@ alter table user_infos
     add constraint FK_user_info
         foreign key (user_id)
             references users(id);
+
+alter table water_info
+   add constraint FKk_water_info
+       foreign key (user_id)
+           references users(id)

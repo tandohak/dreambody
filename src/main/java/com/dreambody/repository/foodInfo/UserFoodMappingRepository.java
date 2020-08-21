@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface UserFoodMappingRepository extends JpaRepository<UserFoodMapping, Long> {
 
-    List<UserFoodMapping> findByUserIdAndMealType(Long userId, EMealType mealType1);
-    List<UserFoodMapping> findByUserId(Long userId);
+    List<UserFoodMapping> findByUserIdAndMealTypeAndRegistrationDate(Long userId, EMealType mealType, LocalDate registrationDate);
+    List<UserFoodMapping> findByUserIdAndRegistrationDate(Long userId, LocalDate registrationDate);
     List<UserFoodMapping> findAllByUserAndRegistrationDate(User user, LocalDate registrationDate);
     List<UserFoodMapping> findAllByUserAndRegistrationDateAndMealType(User user, LocalDate registrationDate, EMealType mealType);
 }

@@ -105,6 +105,16 @@ graphql.playground:
       variables: classpath:graphQl/example/summary/getSummaryVariables.json
       responses:
         - classpath:graphQl/example/summary/getSummaryResponse.json
+    - name: SaveWaterInfo
+      query: classpath:graphQl/example/water/saveWaterInfo.graphql
+      variables: classpath:graphQl/example/water/saveWaterInfoVariables.json
+      responses:
+        - classpath:graphQl/example/water/saveWaterInfoResponse.json
+    - name: GetWaterInfo
+      query: classpath:graphQl/example/water/getWaterInfo.graphql
+      variables: classpath:graphQl/example/water/getWaterInfoVariables.json
+      responses:
+        - classpath:graphQl/example/water/getWaterInfoResponse.json
 ---
 spring:
   profiles: local

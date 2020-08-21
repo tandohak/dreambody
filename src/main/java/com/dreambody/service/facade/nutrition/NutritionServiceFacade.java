@@ -20,5 +20,5 @@ import java.util.List;
 @Service
 public interface NutritionServiceFacade {
     FoodInfoSumResponse saveUserFoodMapping(List<FoodInfoRequest> foodInfoRequest);
-    List<UserFoodMappingResponse> getUserFoodMapping(User userId, EMealType mealType);
+    List<UserFoodMappingResponse> getUserFoodMapping(User userId, FoodInfoRequest foodInfoRequest);
 }

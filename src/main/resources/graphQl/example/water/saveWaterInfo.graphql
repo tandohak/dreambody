@@ -1,0 +1,7 @@
+# 식사타입에 따른 식사정보 저장
+mutation SaveWaterInfo($waterInfoRequest: WaterInfoRequest) {
+    saveWaterInfo(waterInfoRequest: $waterInfoRequest) {
+        registrationDate
+        amountWater
+    }
+}

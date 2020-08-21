@@ -6,6 +6,7 @@ import com.dreambody.model.foodInfo.UserFoodMapping;
 import com.dreambody.model.userInit.UserInfo;
 import com.dreambody.repository.foodInfo.UserFoodMappingRepository;
 import com.dreambody.repository.userInit.UserInfoRepository;
+import com.dreambody.resolver.request.nutrition.FoodInfoRequest;
 import com.dreambody.resolver.response.summary.UserFoodMappingResponse;
 import com.dreambody.security.oauth2.user.UserPrincipal;
 import com.dreambody.service.facade.nutrition.NutritionServiceFacade;
@@ -30,8 +31,8 @@ public class UserFoodMappingDetailResolver implements GraphQLQueryResolver {
     private final NutritionServiceFacade nutritionServiceFacade;
 
     @GraphQLQuery(name = "userFoodMapping")
-    public List<UserFoodMappingResponse> getUserFoodMapping(EMealType mealType) {
+    public List<UserFoodMappingResponse> getUserFoodMapping(FoodInfoRequest foodInfoRequest) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), mealType);
+        return nutritionServiceFacade.getUserFoodMapping(User.builder().id(userPrincipal.getId()).build(), foodInfoRequest);
     }
 }

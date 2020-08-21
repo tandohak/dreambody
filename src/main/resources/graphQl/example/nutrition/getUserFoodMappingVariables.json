@@ -1,3 +1,6 @@
 {
-  "mealType": "BREAKFAST"
+  "foodInfoRequest": {
+    "mealType": "BREAKFAST",
+    "registrationDate": "2020-02-01"
+  }
 }
